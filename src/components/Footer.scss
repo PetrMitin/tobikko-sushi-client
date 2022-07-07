@@ -1,0 +1,17 @@
+hr {
+    color: white !important;
+    height: 2px !important;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    align-items: center;
+}

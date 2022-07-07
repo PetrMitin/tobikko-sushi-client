@@ -1,0 +1,20 @@
+html {
+  background: black;
+}
+
+#root {
+  background: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App {
+  text-align: center;
+  width: 90%;
+  margin-top: 2%;
+}
+
+@import "custom"

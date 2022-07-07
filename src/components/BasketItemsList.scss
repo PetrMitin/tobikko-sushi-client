@@ -1,0 +1,31 @@
+.basket-items-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        color: white;
+        margin-bottom: 1%;
+    }
+
+    h2 {
+        color: white;
+        width: 30%;
+        align-self: flex-end;
+    }
+
+    .empty-basket-heading {
+        align-self: center;
+    }
+
+    .checkout-button {
+        width: 70%;
+        height: 6vh;
+        background: orangered;
+    }
+
+    .checkout-button:hover {
+        transition: .25s ease-in-out;
+        background: orange;
+    }
+}

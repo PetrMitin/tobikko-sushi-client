@@ -1,0 +1,38 @@
+.menu-item {
+    flex: 0 0 31%;
+    margin: 1%;
+    align-items: center;
+    color: white;
+    .basket-item-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-self: center;
+        margin-bottom: 5%;
+        .item-price {
+            font-size: 4vh;
+            margin-right: 5%;
+        }
+    }
+}
+
+.btn {
+    border-color: rgba(255, 69, 0, 1) !important;
+    color: white !important;
+}
+
+.btn-primary, .to-basket-button {
+    background: rgba(255, 69, 0, 1) !important;
+}
+
+.info-container {
+    color: lightgrey;
+    text-align: left;
+}
+
+@media (max-width: 1300px) {
+    .menu-item {
+        flex: 0 0 47%;
+    }
+}

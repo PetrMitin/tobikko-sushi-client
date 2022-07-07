@@ -1,0 +1,32 @@
+.basket-item {
+    display: flex;
+    flex-direction: row !important;
+    margin-bottom: 1%;
+    color: white;
+    width: 90%;
+    .img-container {
+        width: 40%;
+    }
+    .card-body {
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        .card-info {
+            width: 30%;
+            .card-title {
+                text-align: left;
+            }
+        }
+        .basket-item-controls {
+            display: flex;
+            flex-direction: row;
+            height: 6vh;
+        }
+        .item-price {
+            font-size: 4vh;
+            margin-right: 5%;
+        }
+    }
+}

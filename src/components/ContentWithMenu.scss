@@ -1,0 +1,14 @@
+.content-with-menu {
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vertical {
+    flex-direction: row;
+}
+
+.horizontal {
+    flex-direction: column;
+}
+
