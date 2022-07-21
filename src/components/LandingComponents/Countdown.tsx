@@ -42,7 +42,7 @@ const Countdown: FC = () => {
             </div>
             <img src={COUNTDOWN_TEXT_URL} alt="countdown text" />
             <div>
-                <a href='#countdown-container'><h3>НАВЕРХ</h3></a>
+                <a href='#countdown-container' className='to-top-link'><h3>НАВЕРХ</h3></a>
             </div>
         </Fragment>
     )
