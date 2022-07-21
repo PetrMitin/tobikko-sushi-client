@@ -1,5 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
-import thunk from 'redux-thunk'
+import thunk, { ThunkDispatch } from 'redux-thunk'
+import { action } from './actions'
 import adminReducer from './adminReducer'
 import userReducer from './userReducer'
 
@@ -12,4 +13,4 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = ThunkDispatch<RootState, void, action>

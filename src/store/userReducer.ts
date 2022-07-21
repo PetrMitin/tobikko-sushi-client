@@ -1,5 +1,5 @@
 import { Reducer } from 'react'
-import { IUserState } from '../utils/interfaces'
+import { IUserState } from '../utils/interfaces/reduxInterfaces'
 import {ActionsTypes, action} from './actions'
 
 const initialState: IUserState = {

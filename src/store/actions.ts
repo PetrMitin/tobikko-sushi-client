@@ -1,6 +1,10 @@
-import { IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType, IUser } from "../utils/interfaces"
+import { IServerError } from "../utils/interfaces/apiInterfaces"
+import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
+import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
 export enum ActionsTypes {
+    AUTHORIZE_ADMIN = 'AUTHORIZE_ADMIN',
+    LOGOUT_ADMIN = 'LOGOUT_ADMIN',
     SET_IS_PAGE_DISABLED = 'SET_IS_PAGE_DISABLED',
     REGISTRATE_USER = 'REGISTRATE_USER',
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
@@ -9,6 +13,15 @@ export enum ActionsTypes {
     SET_MENU_ITEM_TYPES_FILTER = 'SET_MENU_ITEM_TYPES_FILTER',
     SET_ERROR = 'SET_ERROR',
     SET_IS_LOADING = 'SET_IS_LOADING'
+}
+
+interface AuthorizeAdminAction {
+    type: ActionsTypes.AUTHORIZE_ADMIN,
+    payload: ILoginResponse
+}
+
+interface LogoutAdminAction {
+    type: ActionsTypes.LOGOUT_ADMIN
 }
 
 interface SetIsPageDisabledAction {
@@ -46,7 +59,7 @@ interface SetMenuItemTypesFilterAction {
 
 interface SetErrorAction {
     type: ActionsTypes.SET_ERROR,
-    payload: Error | null
+    payload: IServerError | null
 }
 
 interface SetIsLoadingAction {
@@ -54,4 +67,4 @@ interface SetIsLoadingAction {
     payload: boolean
 }
 
-export type action = SetIsPageDisabledAction | RegistrateUserAction | SetCurrentBasketItemsAction | GetMenuItemsAction | GetMenuItemTypesAction | SetMenuItemTypesFilterAction | SetErrorAction | SetIsLoadingAction
+export type action = AuthorizeAdminAction | LogoutAdminAction |SetIsPageDisabledAction | RegistrateUserAction | SetCurrentBasketItemsAction | GetMenuItemsAction | GetMenuItemTypesAction | SetMenuItemTypesFilterAction | SetErrorAction | SetIsLoadingAction

@@ -1,6 +1,6 @@
 import {FC} from "react";
-import Footer from "../components/Footer";
-import CustomNavbar from "../components/Navbar";
+import Footer from "../components/ReusableComponents/Footer";
+import CustomNavbar from "../components/ReusableComponents/Navbar";
 
 const AboutRestaurant: FC = () => {
     return (

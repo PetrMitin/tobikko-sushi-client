@@ -1,10 +1,18 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import './App.scss';
+import { useAppDispatch } from './store/hooks';
+import { AdminActionCreators } from './store/action-creators';
 
 
 const App: FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(AdminActionCreators.checkAuthAdmin())
+  }, [])
+
   return (
     <div className='App'>
         <BrowserRouter>

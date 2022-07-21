@@ -1,0 +1,148 @@
+@use '../_base' as *;
+
+.main-logo-img {
+    height: auto;
+    width: auto;
+    max-height: 140px;
+    max-width: 250px;
+}
+
+@media screen 
+  and (max-width: 600px)  {
+    .main-logo-img {
+        max-height: 100px;
+    }
+}
+
+@media screen 
+  and (max-width: 470px)  {
+    .turtles-logo {
+        display: none;
+    }
+}
+
+.navbar-brand {
+    margin-left: 3%;
+}
+
+.navbar {
+    height: 30%;
+    width: 100%;
+    font-size: large;
+    margin-bottom: 1%;
+    justify-content: space-evenly !important;
+}
+
+.navbar-col {
+    flex-direction: column;
+}
+
+.navbar-main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly !important;
+    align-items: center;
+}
+
+.navbar-header {
+    display: flex;
+    flex-direction: row;
+    min-width: min-content;
+    width: 30%;
+    justify-content: space-evenly;
+}
+
+.nav-link {
+    color: white;
+    margin-left: 2%;
+}
+
+.navbar-nav {
+    width: 50%;
+    align-items: flex-start;
+}
+
+.nav-link:hover {
+    color: lightgray;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out
+}
+
+.basket-link {
+    text-align: center;
+    align-items: center;
+    color: white;
+    width: max-content;
+    svg {
+        display: block;
+        margin: auto;
+    }
+}
+
+.active {
+    color: orangered !important;
+    text-decoration: underline !important;
+}
+
+.dropdown {
+    min-width: 5%;
+    min-height: 4vh;
+    margin-left: 3%;
+    border: none !important;
+}
+
+#bg-nested-dropdown::after {
+    display: none;
+}
+
+#bg-nested-dropdown {
+    width: 100%;
+    font-size: 3vh;
+}
+
+.more-navbar-container {
+    min-width: 100%;
+    min-height: 3vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    cursor: pointer;
+    .more-navbar-row {
+        width: 100%;
+        height: 3px;
+        background: white;
+    }
+}
+
+.dropdown-menu {
+    background-color: $dark-grey-bg !important;
+    width: 100%;
+}
+
+.dropdown-item {
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: darkgray !important;
+    transition: .15s ease-in-out;
+}
+
+.navbar-text {
+    min-width: max-content;
+    display: block;
+}
+
+#landing-container {
+    animation: change-opacity .5s ease-in-out;
+}
+
+@keyframes change-opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

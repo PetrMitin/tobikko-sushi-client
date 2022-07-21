@@ -1,28 +1,12 @@
-import {FC, MouseEventHandler, useEffect, useState} from "react";
-import { Button } from "react-bootstrap";
-import Footer from "../components/Footer";
-import CustomNavbar from "../components/Navbar";
-import { AdminActionCreators } from "../store/action-creators";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {FC} from 'react'
+import { useAppSelector } from '../store/hooks'
+import AdminLoginFormPage from './AdminLoginFormPage'
+import AdminPannelPage from './AdminPannelPage'
 
-const Admin: FC = () => {
-    const dispatch = useAppDispatch()
-    const [isPageDisabled, setIsPageDisabled] = useState(!!useAppSelector(state => state.admin?.isPageDisabled))
+const AdminPage: FC = () => {
+    const isLoggedIn = useAppSelector(state => state.admin?.isLoggedIn)
 
-    useEffect(() => {
-        dispatch(AdminActionCreators.setIsPageDisabled(isPageDisabled))
-    }, [isPageDisabled, dispatch])
-
-    const handleSwitchDisabledClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-        setIsPageDisabled(prev => !prev)
-    }
-
-    return (
-        <div id="admin-container">
-            <CustomNavbar />
-            <Footer />
-        </div>
-    )
+    return isLoggedIn ? <AdminPannelPage /> : <AdminLoginFormPage />
 }
 
-export default Admin
+export default AdminPage

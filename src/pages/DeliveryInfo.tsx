@@ -1,7 +1,7 @@
 import {FC} from "react";
-import DeliveryInfoContent from "../components/DeliveryInfoContent";
-import Footer from "../components/Footer";
-import CustomNavbar from "../components/Navbar";
+import DeliveryInfoContent from "../components/DeliveryInfoComponents/DeliveryInfoContent";
+import Footer from "../components/ReusableComponents/Footer";
+import CustomNavbar from "../components/ReusableComponents/Navbar";
 
 const DeliveryInfo: FC = () => {
     return (

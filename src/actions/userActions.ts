@@ -1,4 +1,5 @@
-import { IBasket, IMenuItem, IMenuItemType, IUser } from "../utils/interfaces"
+import { IUser, IBasket, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
+
 
 class UserApiActions {
     baseApiUrl = 'http://localhost:4000/api'
