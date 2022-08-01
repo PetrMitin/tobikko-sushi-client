@@ -1,5 +1,5 @@
 import {FC, Fragment, useEffect, useState} from 'react'
-import { COUNTDOWN_TEXT_URL } from '../../utils/consts'
+import { COUNTDOWN_TEXT_URL } from '../../utils/consts/urlConsts'
 import './Countdown.scss'
 
 const Countdown: FC = () => {

@@ -1,7 +1,7 @@
 import {FC} from 'react'
-import AdminPannel from '../components/AdminComponents/AdminPannel'
-import Footer from '../components/ReusableComponents/Footer'
-import CustomNavbar from '../components/ReusableComponents/Navbar'
+import AdminPannel from '../../components/AdminComponents/AdminPannel'
+import Footer from '../../components/ReusableComponents/Footer'
+import CustomNavbar from '../../components/ReusableComponents/Navbar'
 
 const AdminPannelPage: FC = () => {
     return (

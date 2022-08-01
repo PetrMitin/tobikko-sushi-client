@@ -1,5 +1,5 @@
 import {ChangeEventHandler, FC, useState} from 'react'
-import { deliveryRegions } from '../../utils/consts'
+import { deliveryRegions } from '../../utils/consts/deliveryInfoConsts'
 
 const DeliveryRegionsList: FC = () => {
     const [currentRegion, setCurrentRegion] = useState('')

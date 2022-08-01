@@ -1,21 +1,4 @@
-import { IDeliveryRegion } from "./interfaces/UIInterfaces"
-
-export const API_URL = 'http://localhost:4000'
-
-export const MAIN_LOGO_NO_TEXT_URL = 'https://af12.mail.ru/cgi-bin/readmsg?id=16581398001151717668;0;1;1&mode=attachment&email=petr09mitin@mail.ru&ct=image%2fpng&cn=%d1%80%d1%8b%d0%b1%d0%ba%d0%b0%d0%b2.png&cte=binary'
-export const MAIN_LOGO_TEXT_URL = `${API_URL}/main-logo.jpg`
-export const TURTLES_LOGO_URL = 'https://e.mail.ru/cgi-bin/getattach?file=turtles+pizza+logo.jpeg&id=16576171480886866705%3B0%3B1&mode=attachment&x-email=petr09mitin%40mail.ru'
-export const COUNTDOWN_TEXT_URL = `${API_URL}/countdown-text.jpg`
-
-export const ADMIN_ROUTE = '/admin/*'
-export const ADMIN_LOGIN_ROUTE = '/admin-login'
-export const ADMIN_PANNEL_ROUTE = '/admin-pannel'
-export const ABOUT_RESTAURANT_ROUTE = '/about-restaurant'
-export const BASKET_ROUTE = '/basket'
-export const DELIVERY_INFO_ROUTE = '/delivery-info'
-export const MENU_ROUTE = '/menu'
-export const CHECKOUT_ROUTE = '/checkout'
-export const ERROR_ROUTE = '/error'
+import { IDeliveryRegion } from "../interfaces/UIInterfaces"
 
 export const deliveryRegions: IDeliveryRegion[] = [
     {name: 'Раменское от 2000р.', price: '150-250 р. (В зависимости от удаленности)'},

@@ -1,13 +1,13 @@
 import React, {FC, Fragment, useEffect, useState} from "react";
-import ContentWithMenu from "../components/ReusableComponents/ContentWithMenu";
-import Countdown from "../components/LandingComponents/Countdown";
-import Footer from "../components/ReusableComponents/Footer";
-import LandingInfoPannel from "../components/LandingComponents/LandingInfoPannel";
-import CustomNavbar from "../components/ReusableComponents/Navbar";
-import Showcase from "../components/ReusableComponents/Showcase";
-import { useAppSelector } from "../store/hooks";
-import { IImage, IPopupState } from "../utils/interfaces/UIInterfaces";
-import PopupLogo from "../components/LandingComponents/PopupLogo";
+import ContentWithMenu from "../../components/ReusableComponents/ContentWithMenu";
+import Countdown from "../../components/LandingComponents/Countdown";
+import Footer from "../../components/ReusableComponents/Footer";
+import LandingInfoPannel from "../../components/LandingComponents/LandingInfoPannel";
+import CustomNavbar from "../../components/ReusableComponents/Navbar";
+import Showcase from "../../components/ReusableComponents/Showcase";
+import { useAppSelector } from "../../store/hooks";
+import { IImage, IPopupState } from "../../utils/interfaces/UIInterfaces";
+import PopupLogo from "../../components/LandingComponents/PopupLogo";
 
 const Landing: FC = () => {
     const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled)   

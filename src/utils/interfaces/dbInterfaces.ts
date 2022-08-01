@@ -3,7 +3,6 @@ export interface IMenuItem {
     name: string,
     price: number,
     massInGramms: number,
-    calories: number,
     image: string,
     menu_item_types: IMenuItemType[],
     menu_item_infos: IMenuItemInfo[],
@@ -14,6 +13,7 @@ export interface IMenuItem {
 export interface IMenuItemType {
     id: number,
     name: string,
+    icon: string,
     createdAt: string,
     updatedAt: string
 }

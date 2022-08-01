@@ -1,8 +1,9 @@
+import { API_URL } from "../utils/consts/urlConsts"
 import { IUser, IBasket, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
 
 
 class UserApiActions {
-    baseApiUrl = 'http://localhost:4000/api'
+    baseApiUrl = `${API_URL}/api`
 
     registrateUser = async (): Promise<{user: IUser, basket: IBasket}> => {
         const res = await fetch(`${this.baseApiUrl}/user/registration`, {

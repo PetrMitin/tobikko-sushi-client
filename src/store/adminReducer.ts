@@ -3,7 +3,7 @@ import { IAdminState, IAdminData } from '../utils/interfaces/reduxInterfaces'
 import { action, ActionsTypes } from './actions'
 
 const initialState: IAdminState = {
-    isPageDisabled: true,
+    isPageDisabled: false,
     isLoggedIn: false,
     adminData: {} as IAdminData
 }

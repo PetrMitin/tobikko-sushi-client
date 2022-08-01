@@ -1,0 +1,60 @@
+@use '../../../_base.scss' as *;
+
+.new-menu-item-form {
+    background-color: $dark-grey-bg;
+    border-radius: 2%;
+    padding: 0 2%;
+    
+    input, button {
+        margin: 0 0 1% 0;
+    }
+}
+
+.new-type-container {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border: 1px solid white;
+    border-radius: 30%;
+    padding: 1vw;
+    .new-menu-item-type {
+        margin-right: 1vw;
+    }
+}
+
+.new-info-container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border: 1px solid white;
+        border-radius: 30%;
+
+    .new-menu-item-info {
+        margin-right: 1vw;
+        padding: 1vw;
+    }
+}
+
+.delete-button {
+    width: 80%;
+    margin: 0;
+}
+
+.delete-button:hover {
+    transition: .25s;
+    background-color: darkred !important;
+}
+
+.submit-button {
+    width: 80%;
+    margin: 0;
+}
+
+.submit-button:hover {
+    transition: .25s;
+    background-color: orange !important;
+}

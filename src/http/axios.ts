@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../utils/consts";
+import { API_URL } from "../utils/consts/urlConsts";
 
 const $admin_api = axios.create({
     withCredentials: true,
@@ -8,7 +8,6 @@ const $admin_api = axios.create({
 
 $admin_api.interceptors.request.use((config) => {
     config.headers!.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
-    config.headers!["Content-Type"] = 'application/json'
     return config
 })
 $admin_api.interceptors.response.use()

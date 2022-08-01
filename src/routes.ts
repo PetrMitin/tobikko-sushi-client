@@ -1,16 +1,16 @@
-import AdminPannelPage from "./pages/AdminPannelPage"
-import AboutRestaurant from "./pages/AboutRestaurant"
-import AdminLoginFormPage from "./pages/AdminLoginFormPage"
-import Admin from "./pages/AdminLoginFormPage"
-import Basket from "./pages/Basket"
-import Checkout from "./pages/Checkout"
-import DeliveryInfo from "./pages/DeliveryInfo"
-import ErrorContainer from "./pages/Error"
-import Landing from "./pages/Landing"
-import Menu from "./pages/Menu"
+import AdminPage from "./pages/AdminPages/Admin"
+import MenuItemsControls from "./components/AdminComponents/Controls/MenuItemsControls/MenuItemsControls"
+import TypesControls from "./components/AdminComponents/Controls/TypesControls/TypesControls"
+import AboutRestaurant from "./pages/UIPages/AboutRestaurant"
+import Basket from "./pages/UIPages/Basket"
+import Checkout from "./pages/UIPages/Checkout"
+import DeliveryInfo from "./pages/UIPages/DeliveryInfo"
+import ErrorContainer from "./pages/UIPages/Error"
+import Landing from "./pages/UIPages/Landing"
+import Menu from "./pages/UIPages/Menu"
 import { IRoute } from "./types/routeTypes"
-import { ABOUT_RESTAURANT_ROUTE, ADMIN_LOGIN_ROUTE, ADMIN_PANNEL_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, CHECKOUT_ROUTE, DELIVERY_INFO_ROUTE, ERROR_ROUTE, MENU_ROUTE } from "./utils/consts"
-import AdminPage from "./pages/Admin"
+
+import { ERROR_ROUTE, ADMIN_ROUTE, ABOUT_RESTAURANT_ROUTE, BASKET_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, CHECKOUT_ROUTE, ADMIN_MENU_ITEMS_CONTROLS, ADMIN_TYPES_CONTROLS } from "./utils/consts/routeConsts"
 
 export const landingRoute: IRoute = {
     path: '/',
@@ -23,6 +23,14 @@ export const errorRoute: IRoute = {
 }
 
 export const adminRoutes: IRoute[] = [
+    {
+        path: ADMIN_MENU_ITEMS_CONTROLS,
+        Component: MenuItemsControls
+    },
+    {
+        path: ADMIN_TYPES_CONTROLS,
+        Component: TypesControls
+    }
 ]
 
 export const publicRoutes: IRoute[] = [

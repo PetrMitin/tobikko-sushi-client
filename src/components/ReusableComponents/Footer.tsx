@@ -1,8 +1,9 @@
 import {FC} from 'react'
 import { Nav } from 'react-bootstrap'
 import { Icon28LogoVkColor } from '@vkontakte/icons';
+import { ABOUT_RESTAURANT_ROUTE, ADMIN_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE } from '../../utils/consts/routeConsts';
 import './Footer.scss'
-import { ABOUT_RESTAURANT_ROUTE, ADMIN_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE } from '../../utils/consts';
+
 
 const Footer: FC = () => {
     return (

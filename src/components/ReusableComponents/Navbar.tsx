@@ -1,7 +1,6 @@
 import React, {FC, MouseEventHandler, useEffect, useState} from 'react'
 import { Navbar, Nav, Image, DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
-import { useAppSelector } from '../../store/hooks'
-import { MAIN_LOGO_NO_TEXT_URL, TURTLES_LOGO_URL } from '../../utils/consts'
+import { MAIN_LOGO_NO_TEXT_URL, TURTLES_LOGO_URL } from '../../utils/consts/urlConsts'
 import './Navbar.scss'
 
 const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-info' | 'basket'}> = ({whatIsActive}) => {
@@ -31,7 +30,6 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 <div className="navbar-header">
                     <DropdownButton as={ButtonGroup} className='bg-dark' title={<p>.<br/> .<br/> .<br/></p>} id="bg-nested-dropdown">
                         <Dropdown.Item href='/menu'>Меню</Dropdown.Item>
-                        <Dropdown.Item href='/about-restaurant'>О ресторане</Dropdown.Item>
                         <Dropdown.Item href='/delivery-info'>О доставке</Dropdown.Item>
                     </DropdownButton>
                     <Navbar.Brand href="/">
@@ -50,7 +48,6 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 (<React.Fragment>
                 <DropdownButton as={ButtonGroup} className='bg-dark' title={<p>.<br/> .<br/> .<br/></p>} id="bg-nested-dropdown">
                 <Dropdown.Item href='/menu'>Меню</Dropdown.Item>
-                <Dropdown.Item href='/about-restaurant'>О ресторане</Dropdown.Item>
                 <Dropdown.Item href='/delivery-info'>О доставке</Dropdown.Item>
             </DropdownButton>
             <Navbar.Brand href="/">
@@ -103,7 +100,6 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/menu" className={whatIsActive === 'menu' ? 'active' : ''}>МЕНЮ</Nav.Link>
-                    <Nav.Link href="/about-restaurant" className={whatIsActive === 'about-restaurant' ? 'active' : ''}>О РЕСТОРАНЕ</Nav.Link>
                     <Nav.Link href="/delivery-info" className={whatIsActive === 'delivery-info' ? 'active' : ''}>О ДОСТАВКЕ</Nav.Link>
                 </Nav>
                 <Navbar.Text>

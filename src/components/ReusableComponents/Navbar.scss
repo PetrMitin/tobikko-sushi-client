@@ -54,17 +54,20 @@
 }
 
 .nav-link {
-    color: white;
+    color: white !important;
     margin-left: 2%;
 }
 
 .navbar-nav {
-    width: 50%;
+    width: 40%;
     align-items: flex-start;
+    justify-content: space-evenly;
+    font-size: larger;
+    color: white !important;
 }
 
 .nav-link:hover {
-    color: lightgray;
+    color: lightgray !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out
 }
 
@@ -73,6 +76,7 @@
     align-items: center;
     color: white;
     width: max-content;
+    margin-right: 2%;
     svg {
         display: block;
         margin: auto;
@@ -131,6 +135,7 @@
 .navbar-text {
     min-width: max-content;
     display: block;
+    color: white !important;
 }
 
 #landing-container {

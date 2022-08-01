@@ -1,0 +1,17 @@
+@use '../../../_base.scss' as *;
+
+.new-type-form-container {
+    width: 100%;
+    background: $dark-grey-bg;
+    margin-bottom: 2%;
+    border-radius: 2%;
+
+    label {
+        margin: 1% 0;
+    }
+
+    .submit-button {
+        margin-bottom: 2%;
+        margin-top: 1%;
+    }
+}

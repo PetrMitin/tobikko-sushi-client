@@ -2,6 +2,7 @@ import {FC, MouseEventHandler} from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { UserActionCreators } from '../../store/action-creators'
 import { useAppDispatch } from '../../store/hooks'
+import { API_URL } from '../../utils/consts/urlConsts'
 import { IMenuItemType } from '../../utils/interfaces/dbInterfaces'
 import './MenuItemType.scss'
 
@@ -15,7 +16,7 @@ const MenuItemType: FC<{menuItemType: IMenuItemType}> = ({menuItemType}) => {
     return (
         <ListGroup.Item onClick={handleClick}>
             <div className="types-list-container">
-                <img src='https://e.mail.ru/cgi-bin/getattach?file=sushi-icon.jpg&id=16561696670129536813%3B0%3B1&mode=attachment&x-email=petr09mitin%40mail.ru'
+                <img src={`${API_URL}/${menuItemType.icon}`}
                     alt={menuItemType.name} />
                     {menuItemType.name.toUpperCase()}
             </div>

@@ -5,6 +5,12 @@ import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 export enum ActionsTypes {
     AUTHORIZE_ADMIN = 'AUTHORIZE_ADMIN',
     LOGOUT_ADMIN = 'LOGOUT_ADMIN',
+    CREATE_NEW_TYPE = 'CREATE_NEW_TYPE',
+    UPDATE_TYPE = 'UPDATE_TYPE',
+    DELETE_TYPE = 'DELETE_TYPE',
+    CREATE_NEW_MENU_ITEM = 'CREATE_NEW_MENU_ITEM',
+    UPDATE_MENU_ITEM = 'UPDATE_MENU_ITEM',
+    DELETE_MENU_ITEM = 'DELETE_MENU_ITEM',
     SET_IS_PAGE_DISABLED = 'SET_IS_PAGE_DISABLED',
     REGISTRATE_USER = 'REGISTRATE_USER',
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
@@ -22,6 +28,30 @@ interface AuthorizeAdminAction {
 
 interface LogoutAdminAction {
     type: ActionsTypes.LOGOUT_ADMIN
+}
+
+interface CreateNewTypeAction {
+    type: ActionsTypes.CREATE_NEW_TYPE
+}
+
+interface UpdateTypeAction {
+    type: ActionsTypes.UPDATE_TYPE
+}
+
+interface DeleteTypeAction {
+    type: ActionsTypes.DELETE_TYPE
+}
+
+interface CreateNewMenuItemAction {
+    type: ActionsTypes.CREATE_NEW_MENU_ITEM
+}
+
+interface UpdateMenuItemAction {
+    type: ActionsTypes.UPDATE_MENU_ITEM
+}
+
+interface DeleteMenuItemAction {
+    type: ActionsTypes.DELETE_MENU_ITEM
 }
 
 interface SetIsPageDisabledAction {
@@ -67,4 +97,19 @@ interface SetIsLoadingAction {
     payload: boolean
 }
 
-export type action = AuthorizeAdminAction | LogoutAdminAction |SetIsPageDisabledAction | RegistrateUserAction | SetCurrentBasketItemsAction | GetMenuItemsAction | GetMenuItemTypesAction | SetMenuItemTypesFilterAction | SetErrorAction | SetIsLoadingAction
+export type action = AuthorizeAdminAction | 
+                    LogoutAdminAction | 
+                    CreateNewTypeAction | 
+                    UpdateTypeAction | 
+                    DeleteTypeAction | 
+                    CreateNewMenuItemAction |
+                    UpdateMenuItemAction |
+                    DeleteMenuItemAction |
+                    SetIsPageDisabledAction | 
+                    RegistrateUserAction | 
+                    SetCurrentBasketItemsAction | 
+                    GetMenuItemsAction | 
+                    GetMenuItemTypesAction | 
+                    SetMenuItemTypesFilterAction | 
+                    SetErrorAction | 
+                    SetIsLoadingAction

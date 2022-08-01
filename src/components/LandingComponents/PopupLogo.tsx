@@ -1,7 +1,6 @@
 import {FC} from 'react'
 import {Image} from 'react-bootstrap'
-import { MAIN_LOGO_TEXT_URL } from '../../utils/consts'
-import { IPopupState } from '../../utils/interfaces/UIInterfaces'
+import { MAIN_LOGO_TEXT_URL } from '../../utils/consts/urlConsts'
 import './PopupLogo.scss'
 
 const PopupLogo: FC = () => {
