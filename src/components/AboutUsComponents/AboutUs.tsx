@@ -15,10 +15,7 @@ const AboutUs: FC = () => {
                 pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
                 mollit anim id est laborum.
             </p>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2253.9505613053097!2d38.08211061589487!3d55.602874080513516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414abf73c0d1503f%3A0xd74a91743993fba1!2z0JLQutGD0YEgVG9reW8!5e0!3m2!1sru!2sru!4v1656166721728!5m2!1sru!2sru" 
-                width="600" height="450" style={{border:0}} loading="lazy" title="google-map">
-            </iframe>
+            <iframe title='yandex-map' src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac5ae0af3439345984185c43f5d5e9fe9c3157a73f8d82c42d27340f3b2368c14&amp;source=constructor"></iframe>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
