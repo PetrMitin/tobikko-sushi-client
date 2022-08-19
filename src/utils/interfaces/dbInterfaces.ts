@@ -52,7 +52,9 @@ export interface ICurrentBasketItem {
 
 export interface IUser {
     id: number,
-    email: string,
+    email: string | null,
+    name: string | null,
+    phone: string | null,
     password: string,
     role: 'USER' | 'ADMIN',
     IP: string,

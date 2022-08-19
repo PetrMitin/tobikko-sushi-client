@@ -17,6 +17,13 @@
     }
 }
 
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
 .btn {
     border-color: rgba(255, 69, 0, 1) !important;
     color: white !important;
@@ -34,5 +41,11 @@
 @media (max-width: 1300px) {
     .menu-item {
         flex: 0 0 47%;
+    }
+}
+
+@media (max-width: 715px) {
+    .menu-item {
+        flex: 0 0 96%;
     }
 }

@@ -16,6 +16,7 @@ export enum ActionsTypes {
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
     GET_MENU_ITEMS = 'GET_MENU_ITEMS',
     GET_MENU_ITEM_TYPES = 'GET_MENU_ITEM_TYPES',
+    INITIALIZE_PAYMENT = 'INITIALIZE_PAYMENT',
     SET_MENU_ITEM_TYPES_FILTER = 'SET_MENU_ITEM_TYPES_FILTER',
     SET_ERROR = 'SET_ERROR',
     SET_IS_LOADING = 'SET_IS_LOADING'
@@ -82,6 +83,10 @@ interface GetMenuItemTypesAction {
     payload: IMenuItemType[]
 }
 
+interface InitializePaymentAction {
+    type: ActionsTypes.INITIALIZE_PAYMENT
+}
+
 interface SetMenuItemTypesFilterAction {
     type: ActionsTypes.SET_MENU_ITEM_TYPES_FILTER,
     payload: number | null
@@ -112,4 +117,5 @@ export type action = AuthorizeAdminAction |
                     GetMenuItemTypesAction | 
                     SetMenuItemTypesFilterAction | 
                     SetErrorAction | 
-                    SetIsLoadingAction
+                    SetIsLoadingAction | 
+                    InitializePaymentAction

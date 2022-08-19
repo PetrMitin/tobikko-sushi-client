@@ -1,6 +1,6 @@
 import {FC, MouseEventHandler} from 'react'
 import { ListGroup } from 'react-bootstrap'
-import { UserActionCreators } from '../../store/action-creators'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 import { useAppDispatch } from '../../store/hooks'
 import { API_URL } from '../../utils/consts/urlConsts'
 import { IMenuItemType } from '../../utils/interfaces/dbInterfaces'

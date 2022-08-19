@@ -1,6 +1,6 @@
 import {FC, MouseEventHandler} from 'react'
 import { Button } from 'react-bootstrap'
-import { AdminActionCreators } from '../../store/action-creators'
+import { AdminActionCreators } from '../../store/action-creators/adminActionCreators'
 import { useAppDispatch } from '../../store/hooks'
 
 const AdminLogoutButton: FC = () => {

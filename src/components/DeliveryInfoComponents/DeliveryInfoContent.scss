@@ -26,3 +26,11 @@
         flex: 0 0 100%;
     }
 }
+
+.delivery-regions-list-container {
+    width: 80%;
+    min-width: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

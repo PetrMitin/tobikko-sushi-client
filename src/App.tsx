@@ -3,7 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import './App.scss';
 import { useAppDispatch } from './store/hooks';
-import { AdminActionCreators } from './store/action-creators';
+import { AdminActionCreators } from './store/action-creators/adminActionCreators';
+
 
 
 const App: FC = () => {

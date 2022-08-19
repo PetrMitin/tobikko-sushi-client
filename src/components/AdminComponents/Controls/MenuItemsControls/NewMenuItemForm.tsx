@@ -1,12 +1,13 @@
 import React, { ChangeEventHandler, FC, Fragment, MouseEventHandler, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { AdminActionCreators, UserActionCreators } from "../../../../store/action-creators";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { IMenuItemData, IMenuItemInfoData } from "../../../../utils/interfaces/apiInterfaces";
 import { IMenuItemType } from "../../../../utils/interfaces/dbInterfaces";
 import NewMenuItemInfo from "./NewMenuItemInfo";
 import NewMenuItemType from "./NewMenuItemType";
 import './NewMenuItemForm.scss'
+import { AdminActionCreators } from "../../../../store/action-creators/adminActionCreators";
+import { UserActionCreators } from "../../../../store/action-creators/userActionCreators";
 
 const NewMenuItemForm: FC = () => {
     const dispatch = useAppDispatch()

@@ -3,17 +3,19 @@ import { Button, ButtonGroup, Card } from 'react-bootstrap'
 import MenuItemInfo from '../MenuComponents/MenuItemInfo'
 import './BasketItem.scss'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { UserActionCreators } from '../../store/action-creators'
 import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfaces'
+import { API_URL } from '../../utils/consts/urlConsts'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 
 const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount}) => {
+    // console.log(menuItem);
     const dispatch = useAppDispatch()
     const firstRender = useRef(true)
     const prevStringCurrentBasketItems = localStorage.getItem('currentBasketItems')
     const prevCurrentBasketItems: ICurrentBasketItem[] = JSON.parse(prevStringCurrentBasketItems ? prevStringCurrentBasketItems : '[]')
     const currentBasketItems = prevCurrentBasketItems
     const basketId = useAppSelector(state => state.user?.basket?.id)
-    const baseApiUrl = 'http://localhost:4000'
+    const baseApiUrl = API_URL
     const [amountCounter, setAmountCounter] = useState(amount || currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)?.amount || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -67,10 +69,6 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount
             <Card.Body>
                 <div className="card-info">
                     <Card.Title>{menuItem.name.toUpperCase()}</Card.Title>
-                    <Card.Text className='info-container'>
-                        Масса: {menuItem.massInGramms} г. <br/>
-                        {menuItem.menu_item_infos.map(menuItemInfo => <MenuItemInfo menuItemInfo={menuItemInfo} key={menuItemInfo.id} />)}
-                    </Card.Text>
                 </div>
                 <div className="basket-item-controls">
                     <div className="item-price">

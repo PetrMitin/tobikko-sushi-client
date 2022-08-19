@@ -1,17 +1,16 @@
-import {FC, useEffect, useRef, useState} from 'react'
-import { Button } from 'react-bootstrap'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { ICurrentBasketItem, IMenuItem } from '../../utils/interfaces/dbInterfaces'
-import BasketItem from './BasketItem'
-import './BasketItemsList.scss'
+import { FC, useState } from "react";
+import { Button } from "react-bootstrap";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { ICurrentBasketItem, IMenuItem } from "../../utils/interfaces/dbInterfaces";
+import BasketItem from "../BasketComponents/BasketItem";
 
-const BasketItemsList: FC = () => {
+const CheckoutBasketItemsList: FC<{deliveryPrice: number}> = ({deliveryPrice}) => {
     const dispatch = useAppDispatch()
     const [currentBasketItems, setCurrentBasketItems] = useState(JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[])
     const menuItems = useAppSelector(state => state.user?.menuItems || [])    
-    console.log(currentBasketItems);
+    // console.log(currentBasketItems);
 
-    let totalPrice = 0
+    let totalPrice = deliveryPrice !== NaN ? deliveryPrice : 0
     currentBasketItems.forEach(basketItem => {
                 const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
                 if (!currentMenuItem.price) {
@@ -25,7 +24,7 @@ const BasketItemsList: FC = () => {
     return (
         <div className="basket-items-list">
             {totalPrice === 0 
-            ? <h2 className='empty-basket-heading'>Ваша корзина пуста!</h2>
+            ? <h2 className='empty-basket-heading'>Ваш заказ пуст!</h2>
             : currentBasketItems
                 .filter(basketItem => basketItem.amount > 0)
                 .map(basketItem => {
@@ -33,9 +32,8 @@ const BasketItemsList: FC = () => {
                     return <BasketItem key={currentMenuItem.id} menuItem={currentMenuItem} amount={basketItem.amount} />
                 })}
             {totalPrice > 0 ? <h2>ИТОГО: {totalPrice}&#8381;</h2> : ''}
-            {totalPrice > 0 ? <Button variant='secondary' className='checkout-button' href='/checkout' >ОФОРМИТЬ ЗАКАЗ</Button> : ''}
         </div>
     )
 }
 
-export default BasketItemsList
+export default CheckoutBasketItemsList

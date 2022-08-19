@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC, MouseEventHandler, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { AdminActionCreators } from "../../../../store/action-creators";
+import { AdminActionCreators } from "../../../../store/action-creators/adminActionCreators";
 import { useAppDispatch } from "../../../../store/hooks";
 import './NewTypeForm.scss'
 

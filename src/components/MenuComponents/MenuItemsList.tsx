@@ -1,5 +1,5 @@
 import {FC, useEffect} from 'react'
-import { UserActionCreators } from '../../store/action-creators'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import MenuItem from './MenuItem'
 import './MenuItemsList.scss'

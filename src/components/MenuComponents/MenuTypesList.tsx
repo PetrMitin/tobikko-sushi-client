@@ -1,6 +1,6 @@
 import {FC, MouseEventHandler, useEffect, useState} from 'react'
 import { ListGroup } from 'react-bootstrap'
-import { UserActionCreators } from '../../store/action-creators'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import MenuItemType from './MenuItemType'
 import './MenuTypesList.scss'

@@ -10,6 +10,6 @@ $admin_api.interceptors.request.use((config) => {
     config.headers!.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
     return config
 })
-$admin_api.interceptors.response.use()
+
 
 export default $admin_api

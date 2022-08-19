@@ -63,9 +63,9 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 className='main-logo-img turtles-logo'/>
             </Navbar.Brand></React.Fragment>)}
                 {isPhoneDisplayed && <div className="phone-text"><Navbar.Text>
-                    +7 (916) 935-05-05<br/>
+                    <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
                     Часы работы: 11:00-23:45<br/>
-                    Ул. Гудкова, д. 20
+                    Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text></div>}
                     <Nav.Link href="/basket" className={`${whatIsActive === 'basket' ? 'active' : ''} basket-link`}>
                     <div className="basket-link-container">
@@ -77,9 +77,9 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                     </Nav.Link>
                     </div>
                     {!isPhoneDisplayed && <div className="phone-text phone-text-downside"><Navbar.Text>
-                    +7 (916) 935-05-05<br/>
+                    <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
                     Часы работы: 11:00-23:45<br/>
-                    Ул. Гудкова, д. 20
+                    Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text></div>}
             </Navbar>
         )
@@ -103,9 +103,9 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                     <Nav.Link href="/delivery-info" className={whatIsActive === 'delivery-info' ? 'active' : ''}>О ДОСТАВКЕ</Nav.Link>
                 </Nav>
                 <Navbar.Text>
-                    +7 (916) 935-05-05<br/>
+                <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
                     Часы работы: 11:00-23:45<br/>
-                    Ул. Гудкова, д. 20
+                    Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text>
                 <Nav.Link href="/basket" className={`${whatIsActive === 'basket' ? 'active' : ''} basket-link`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-cart4" viewBox="0 0 16 16">

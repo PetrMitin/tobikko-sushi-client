@@ -2,9 +2,10 @@ import {FC, MouseEventHandler, useEffect, useRef, useState} from 'react'
 import { Button, ButtonGroup, Card } from 'react-bootstrap'
 import './MenuItem.scss'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { UserActionCreators } from '../../store/action-creators'
 import MenuItemInfo from './MenuItemInfo'
 import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfaces'
+import { API_URL } from '../../utils/consts/urlConsts'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 
 const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const dispatch = useAppDispatch()
@@ -14,7 +15,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const prevCurrentBasketItems: ICurrentBasketItem[] = JSON.parse(prevStringCurrentBasketItems ? prevStringCurrentBasketItems : '[]')
     const currentBasketItems = prevCurrentBasketItems
     const basketId = useAppSelector(state => state.user?.basket?.id)
-    const baseApiUrl = 'http://localhost:4000'
+    const baseApiUrl = API_URL
     const [amountCounter, setAmountCounter] = useState(currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)?.amount || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {

@@ -1,0 +1,38 @@
+.phone-dropdown {
+    display: flex;
+    color: black;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+label {
+    margin: 0 2%;
+}
+
+.submit-error-list {
+    width: 100%;
+    margin: 2% 0;
+    padding: 1%;
+}
+
+.submit-error-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.invalid-number {
+    border: 2px solid red !important;
+    background-color: #FAF0F0 !important;
+}
+
+.delivery-regions-label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}

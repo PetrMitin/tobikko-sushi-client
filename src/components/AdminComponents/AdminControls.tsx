@@ -4,7 +4,7 @@ import AdminNavbar from './AdminNavbar'
 import { adminRoutes } from '../../routes'
 import AdminLogoutButton from './AdminLogoutButton'
 import { useAppDispatch } from '../../store/hooks'
-import { UserActionCreators } from '../../store/action-creators'
+import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 
 const AdminControls: FC = () => {
     const dispatch = useAppDispatch()

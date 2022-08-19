@@ -18,4 +18,9 @@ export interface ILoginResponse {
     user: IAdminData
 }
 
+export interface IError {
+    message: string,
+    type: string
+}
+
 export type IPopupState = 'popping' | 'showing' | 'hidden'

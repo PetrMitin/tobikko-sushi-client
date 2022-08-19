@@ -17,3 +17,12 @@ export interface IMenuItemInfoData {
     title: string,
     info: string
 }
+
+export interface IDaDataSuggestion {
+    value: string,
+    unrestricted_value: string
+}
+
+export interface IDaDataSuggestionResponse {
+    suggestions: IDaDataSuggestion[]
+}

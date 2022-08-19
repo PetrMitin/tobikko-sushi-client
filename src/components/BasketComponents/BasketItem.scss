@@ -17,6 +17,7 @@
             width: 30%;
             .card-title {
                 text-align: left;
+                word-wrap: normal;
             }
         }
         .basket-item-controls {
@@ -27,6 +28,27 @@
         .item-price {
             font-size: 4vh;
             margin-right: 5%;
+        }
+    }
+}
+
+@media (max-width: 772px) {
+    .basket-item {
+        flex-direction: column !important;
+        align-items: center;
+        .card-body {
+            width: 90%;
+            flex-direction: column;
+            .card-info {
+                width: 100%;
+                .card-title {
+                    text-align: center;
+                    word-wrap: normal;
+                }
+            }
+        }
+        .img-container {
+            width: 80%;
         }
     }
 }

@@ -1,5 +1,9 @@
-import { API_URL } from "../utils/consts/urlConsts"
-import { IUser, IBasket, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
+import axios from "axios"
+import { DADATA_API_TOKEN } from "../utils/consts/apiConsts"
+import { ADDRESS_API_URL, API_URL } from "../utils/consts/urlConsts"
+import { IDaDataSuggestionResponse } from "../utils/interfaces/apiInterfaces"
+import { IUser, IBasket, IMenuItem, IMenuItemType, ICurrentBasketItem } from "../utils/interfaces/dbInterfaces"
+import { IDeliveryRegion } from "../utils/interfaces/UIInterfaces"
 
 
 class UserApiActions {
@@ -31,6 +35,45 @@ class UserApiActions {
         if (!res.ok) throw new Error('Could not fetch item types')
         const jsonRes = await res.json()
         return jsonRes
+    }
+
+    initializePayment = async (userId: number, 
+        phone: string, 
+        email: string, 
+        name: string, 
+        address: string, 
+        deliveryRegion: IDeliveryRegion,
+        paymentMethod: 'courier' | 'online',
+        currentBasketItems: ICurrentBasketItem[],
+        comment?: string): Promise<any> => {
+            console.log(currentBasketItems);
+            window.console.log(userId, 
+                phone, 
+                email, 
+                name, 
+                address, 
+                deliveryRegion,
+                paymentMethod, 
+                currentBasketItems,
+                comment)
+        const res = await axios.post(`${this.baseApiUrl}/payment/initialize`, {
+            userId, 
+            phone, 
+            email, 
+            name, 
+            address, 
+            deliveryRegion,
+            paymentMethod, 
+            currentBasketItems,
+            comment
+        }, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.status >= 400) throw new Error('Could not save your order')
+        return res.data
     }
 }
 

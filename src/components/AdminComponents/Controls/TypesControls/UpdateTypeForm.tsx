@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC, MouseEventHandler, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { AdminActionCreators } from "../../../../store/action-creators";
+import { AdminActionCreators } from "../../../../store/action-creators/adminActionCreators";
 import { useAppDispatch } from "../../../../store/hooks";
 import { API_URL } from "../../../../utils/consts/urlConsts";
 import { IMenuItemType } from "../../../../utils/interfaces/dbInterfaces";

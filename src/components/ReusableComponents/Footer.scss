@@ -18,6 +18,15 @@ hr {
 
 .payment-method-img {
     width: 30%;
+    max-width: 50px;
     margin: 1%;
     border-radius: 100%;
+}
+
+.nav-link {
+    min-width: fit-content;
+}
+
+.footer-col {
+    width: 100%;
 }

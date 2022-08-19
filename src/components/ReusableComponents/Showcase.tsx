@@ -9,7 +9,7 @@ const Showcase: FC<{imgs: IImage[]}> = ({imgs}) => {
             {imgs.map(({src, alt, label, text}) => (
                                 <Carousel.Item key={src}>
                                     <img
-                                        className="d-block w-100"
+                                        className="d-block"
                                         src={src}
                                         alt={alt}
                                     />

@@ -10,7 +10,8 @@ import Landing from "./pages/UIPages/Landing"
 import Menu from "./pages/UIPages/Menu"
 import { IRoute } from "./types/routeTypes"
 
-import { ERROR_ROUTE, ADMIN_ROUTE, ABOUT_RESTAURANT_ROUTE, BASKET_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, CHECKOUT_ROUTE, ADMIN_MENU_ITEMS_CONTROLS, ADMIN_TYPES_CONTROLS } from "./utils/consts/routeConsts"
+import { ERROR_ROUTE, ADMIN_ROUTE, ABOUT_RESTAURANT_ROUTE, BASKET_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, CHECKOUT_ROUTE, ADMIN_MENU_ITEMS_CONTROLS, ADMIN_TYPES_CONTROLS, SUCCESSFUL_CHECKOUT_ROUTE } from "./utils/consts/routeConsts"
+import SuccessfulCheckout from "./pages/UIPages/SuccessfulCheckout"
 
 export const landingRoute: IRoute = {
     path: '/',
@@ -61,5 +62,9 @@ export const publicRoutes: IRoute[] = [
     {
         path: CHECKOUT_ROUTE,
         Component: Checkout
+    },
+    {
+        path: SUCCESSFUL_CHECKOUT_ROUTE,
+        Component: SuccessfulCheckout
     }
 ]

@@ -1,7 +1,7 @@
 import {FC, useEffect} from 'react'
 import {Routes, Route, Navigate} from 'react-router-dom'
 import { errorRoute, landingRoute, publicRoutes } from '../routes'
-import { UserActionCreators } from '../store/action-creators'
+import { UserActionCreators } from '../store/action-creators/userActionCreators'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 
 const AppRouter: FC = () => {
