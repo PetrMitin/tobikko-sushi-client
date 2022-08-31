@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from 'react'
 import { Nav } from 'react-bootstrap'
 import { Icon28LogoVkColor } from '@vkontakte/icons';
-import { ABOUT_RESTAURANT_ROUTE, ADMIN_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE } from '../../utils/consts/routeConsts';
+import { ABOUT_RESTAURANT_ROUTE, ADMIN_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, PUBLIC_OFFER_ROUTE } from '../../utils/consts/routeConsts';
 import './Footer.scss'
 
 
@@ -40,6 +40,7 @@ const Footer: FC = () => {
                             <img src='https://cdn-icons-png.flaticon.com/512/594/594098.png' 
                             alt='Cash' className='payment-method-img' />
                         </Nav.Link>
+                        <Nav.Link href={PUBLIC_OFFER_ROUTE}>ДОГОВОР ПУБЛИЧНОЙ ОФЕРТЫ</Nav.Link>
                     <Nav.Link href={ADMIN_ROUTE}>АДМИНИСТРАТОРАМ</Nav.Link>
                 </div>
                 <div className="footer-col">
@@ -71,10 +72,11 @@ const Footer: FC = () => {
                             <img src='https://cdn-icons-png.flaticon.com/512/594/594098.png' 
                             alt='Cash' className='payment-method-img' />
                         </Nav.Link>
-                    <Nav.Link href={ADMIN_ROUTE}>АДМИНИСТРАТОРАМ</Nav.Link>
                     <Nav.Link href="#footer">МЫ В СОЦ. СЕТЯХ</Nav.Link>
                     <Nav.Link href="#footer"><Icon28LogoVkColor /></Nav.Link>
+                    <Nav.Link href={PUBLIC_OFFER_ROUTE}>ДОГОВОР ПУБЛИЧНОЙ ОФЕРТЫ</Nav.Link>
                     <Nav.Link href="#navbar">НАВЕРХ</Nav.Link>
+                    <Nav.Link href={ADMIN_ROUTE}>АДМИНИСТРАТОРАМ</Nav.Link>
                 </div>
             </div>
         </div>

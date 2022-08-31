@@ -20,10 +20,12 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
+        window.location.reload()
     }
 
     const handleDecrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState <= 0 ? prevState : prevState - 1)
+        window.location.reload()
     }
 
     const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {

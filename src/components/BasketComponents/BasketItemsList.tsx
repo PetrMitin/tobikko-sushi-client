@@ -8,17 +8,21 @@ import './BasketItemsList.scss'
 const BasketItemsList: FC = () => {
     const dispatch = useAppDispatch()
     const [currentBasketItems, setCurrentBasketItems] = useState(JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[])
-    const menuItems = useAppSelector(state => state.user?.menuItems || [])    
+    const menuItems = useAppSelector(state => state.user?.menuItems || [])   
+    const [totalPrice, setTotalPrice] = useState(0) 
     console.log(currentBasketItems);
 
-    let totalPrice = 0
-    currentBasketItems.forEach(basketItem => {
-                const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
-                if (!currentMenuItem.price) {
-                    currentMenuItem.price = 0
-                }
-                totalPrice += currentMenuItem.price * basketItem.amount
-            })
+    useEffect(() => {
+        let cTotalPrice = 0
+        currentBasketItems.forEach(basketItem => {
+            const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
+            if (!currentMenuItem.price) {
+                currentMenuItem.price = 0
+            }
+            cTotalPrice += currentMenuItem.price * basketItem.amount
+        })
+        setTotalPrice(cTotalPrice)
+    }, [currentBasketItems, menuItems])
 
     if (!menuItems?.length) return <div className="basket-items-list"></div>
     

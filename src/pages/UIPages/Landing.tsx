@@ -8,6 +8,7 @@ import Showcase from "../../components/ReusableComponents/Showcase";
 import { useAppSelector } from "../../store/hooks";
 import PopupLogo from "../../components/LandingComponents/PopupLogo";
 import { imgs } from "../../utils/consts/UIConsts";
+import SmallNavbar from "../../components/ReusableComponents/SmallNavbar";
 
 const Landing: FC = () => {
     const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled)   
@@ -26,8 +27,9 @@ const Landing: FC = () => {
             ? <Countdown />
             : <Fragment>
                 <CustomNavbar />
-                <Showcase imgs={imgs} />
-                <ContentWithMenu Component={LandingInfoPannel} />
+                {/* <Showcase imgs={imgs} /> */}
+                <SmallNavbar />
+                <LandingInfoPannel />
                 <Footer />
             </Fragment>}
             </div>)
