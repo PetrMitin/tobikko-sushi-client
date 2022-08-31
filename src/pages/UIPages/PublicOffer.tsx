@@ -1,8 +1,11 @@
 import { FC } from "react";
+import Footer from "../../components/ReusableComponents/Footer";
+import CustomNavbar from "../../components/ReusableComponents/Navbar";
 
 const PublicOffer: FC = () => {
     return (
         <div className="public-offer-container" style={{textAlign: 'left'}}>
+            <CustomNavbar />
             <h1 style={{textAlign: 'center'}}>Договор публичной оферты</h1>
             <ol>
                 <li>
@@ -169,6 +172,7 @@ const PublicOffer: FC = () => {
                 <li>Информация на сайте не является публичной офертой ст 437 ГК РФ</li>
                 <li>Внешний вид товаров может отличаться от представенных на фотографиях в каталоге.</li>
             </ol>
+            <Footer />
         </div>
     )
 }
