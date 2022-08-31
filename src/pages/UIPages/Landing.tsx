@@ -12,6 +12,7 @@ import SmallNavbar from "../../components/ReusableComponents/SmallNavbar";
 
 const Landing: FC = () => {
     const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled)   
+    const [dWidth, setDWidth] = useState(window.innerWidth)
     const [isPopupShown, setIsPopupShown] = useState<boolean>(true)
 
     useEffect(() => {
@@ -19,6 +20,15 @@ const Landing: FC = () => {
             setIsPopupShown(false)
         }, 3000)
     })
+
+    const updateDWidth = () => setDWidth(window.innerWidth)
+
+    useEffect(() => {
+        window.addEventListener('resize', updateDWidth)
+        return () => {
+            window.removeEventListener('resize', updateDWidth)
+        }
+    }, [])
 
     return isPopupShown 
             ? <PopupLogo />
@@ -28,7 +38,7 @@ const Landing: FC = () => {
             : <Fragment>
                 <CustomNavbar />
                 {/* <Showcase imgs={imgs} /> */}
-                <SmallNavbar />
+                {dWidth <= 470 && <SmallNavbar />}
                 <LandingInfoPannel />
                 <Footer />
             </Fragment>}
