@@ -66,8 +66,9 @@ export class AdminActionCreators {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
             try {
                 dispatch(UserActionCreators.setIsLoadingAction(true))
+                window.alert(name + icon + ' action creator')
                 const res = await adminActions.createNewType(name, icon)
-                console.log(res);
+                window.alert(res)
                 dispatch({type: ActionsTypes.CREATE_NEW_TYPE})
                 dispatch(UserActionCreators.setErrorAction(null))
             } catch(e: any) {

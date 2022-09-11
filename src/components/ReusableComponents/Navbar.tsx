@@ -32,17 +32,17 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                         <Dropdown.Item href='/menu'>Меню</Dropdown.Item>
                         <Dropdown.Item href='/delivery-info'>О доставке</Dropdown.Item>
                     </DropdownButton>
-                    <Navbar.Brand href="/">
-                        <Image 
-                        src={MAIN_LOGO_NO_TEXT_URL}
-                        alt="logo" 
-                        className='main-logo-img'/>
-                    </Navbar.Brand>
                     <Navbar.Brand href="http://turtles-pizza.com/" target={'_blank'}>
                         <Image 
                         src={TURTLES_LOGO_URL}
                         alt="logo" 
                         className='main-logo-img turtles-logo'/>
+                    </Navbar.Brand>
+                    <Navbar.Brand href="/about-us">
+                        <Image 
+                        src={MAIN_LOGO_NO_TEXT_URL}
+                        alt="logo" 
+                        className='main-logo-img'/>
                     </Navbar.Brand>
                 </div> :
                 (<React.Fragment>
@@ -50,18 +50,19 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 <Dropdown.Item href='/menu'>Меню</Dropdown.Item>
                 <Dropdown.Item href='/delivery-info'>О доставке</Dropdown.Item>
             </DropdownButton>
-            <Navbar.Brand href="/">
-                <Image 
-                src={MAIN_LOGO_NO_TEXT_URL}
-                alt="logo" 
-                className='main-logo-img'/>
-            </Navbar.Brand>
             <Navbar.Brand href="http://turtles-pizza.com/" target={'_blank'}>
                 <Image 
                 src={TURTLES_LOGO_URL}
                 alt="logo" 
                 className='main-logo-img turtles-logo'/>
-            </Navbar.Brand></React.Fragment>)}
+            </Navbar.Brand>
+            <Navbar.Brand href="/about-us">
+                <Image 
+                src={MAIN_LOGO_NO_TEXT_URL}
+                alt="logo" 
+                className='main-logo-img'/>
+            </Navbar.Brand>
+            </React.Fragment>)}
                 {isPhoneDisplayed && <div className="phone-text"><Navbar.Text>
                     <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
                     Часы работы: 11:00-23:45<br/>
@@ -87,17 +88,17 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
     } else {
         return (
             <Navbar bg="dark" variant="dark" id="navbar">
-                <Navbar.Brand href="/">
-                    <Image 
-                    src={MAIN_LOGO_NO_TEXT_URL}
-                    alt="logo" 
-                    className='main-logo-img'/>
-                </Navbar.Brand>
                 <Navbar.Brand href="http://turtles-pizza.com/" target='_blank'>
                     <Image 
                     src={TURTLES_LOGO_URL}
                     alt="logo" 
                     className='main-logo-img turtles-logo'/>
+                </Navbar.Brand>
+                <Navbar.Brand href="/about-us">
+                    <Image 
+                    src={MAIN_LOGO_NO_TEXT_URL}
+                    alt="logo" 
+                    className='main-logo-img'/>
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/menu" className={whatIsActive === 'menu' ? 'active' : ''}>МЕНЮ</Nav.Link>

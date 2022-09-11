@@ -1,4 +1,4 @@
-import {FC, MouseEventHandler, useEffect, useRef, useState} from 'react'
+import {Dispatch, FC, MouseEventHandler, useEffect, useRef, useState} from 'react'
 import { Button, ButtonGroup, Card } from 'react-bootstrap'
 import MenuItemInfo from '../MenuComponents/MenuItemInfo'
 import './BasketItem.scss'
@@ -7,25 +7,23 @@ import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfac
 import { API_URL } from '../../utils/consts/urlConsts'
 import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 
-const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount}) => {
+const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispatch<React.SetStateAction<number>>}> = ({menuItem, amount, setTotalPrice}) => {
     // console.log(menuItem);
     const dispatch = useAppDispatch()
     const firstRender = useRef(true)
-    const prevStringCurrentBasketItems = localStorage.getItem('currentBasketItems')
-    const prevCurrentBasketItems: ICurrentBasketItem[] = JSON.parse(prevStringCurrentBasketItems ? prevStringCurrentBasketItems : '[]')
-    const currentBasketItems = prevCurrentBasketItems
+    const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []
     const basketId = useAppSelector(state => state.user?.basket?.id)
     const baseApiUrl = API_URL
     const [amountCounter, setAmountCounter] = useState(amount || currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)?.amount || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
-        window.location.reload()
+        setTotalPrice(prev => prev + menuItem.price)
     }
 
     const handleDecrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState <= 0 ? prevState : prevState - 1)
-        window.location.reload()
+        setTotalPrice(prev => prev - menuItem.price)
     }
 
     const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -33,8 +31,10 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount
     }
 
     useEffect(() => {
+        const newCurrentBasketItems = currentBasketItems.map(elem => elem.menuItemId === menuItem.id ? {...elem, amount: amountCounter} : elem)
+        dispatch(UserActionCreators.setCurrentBasketItems(newCurrentBasketItems))
         if (amountCounter === 0) window.location.reload()
-    }, [amountCounter])
+    }, [amountCounter, dispatch])
 
     useEffect(() => {
         if (currentBasketItems === undefined) return
@@ -74,7 +74,7 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number}> = ({menuItem, amount
                 </div>
                 <div className="basket-item-controls">
                     <div className="item-price">
-                        {menuItem.price * amount}&#8381;
+                        {menuItem.price * amountCounter}&#8381;
                     </div>
                     <ButtonGroup aria-label="counter-buttons">
                         <Button variant="secondary" onClick={handleDecrement}>-</Button>

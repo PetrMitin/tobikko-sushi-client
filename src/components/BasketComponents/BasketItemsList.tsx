@@ -1,18 +1,17 @@
 import {FC, useEffect, useRef, useState} from 'react'
 import { Button } from 'react-bootstrap'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { useAppDispatch, useAppSelector} from '../../store/hooks'
 import { ICurrentBasketItem, IMenuItem } from '../../utils/interfaces/dbInterfaces'
 import BasketItem from './BasketItem'
 import './BasketItemsList.scss'
 
 const BasketItemsList: FC = () => {
     const dispatch = useAppDispatch()
-    const [currentBasketItems, setCurrentBasketItems] = useState(JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[])
+    const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []
     const menuItems = useAppSelector(state => state.user?.menuItems || [])   
     const [totalPrice, setTotalPrice] = useState(0) 
-    console.log(currentBasketItems);
 
-    useEffect(() => {
+    const countTotalPrice = (currentBasketItems: ICurrentBasketItem[]) => {
         let cTotalPrice = 0
         currentBasketItems.forEach(basketItem => {
             const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
@@ -21,7 +20,11 @@ const BasketItemsList: FC = () => {
             }
             cTotalPrice += currentMenuItem.price * basketItem.amount
         })
-        setTotalPrice(cTotalPrice)
+        return cTotalPrice
+    }
+
+    useEffect(() => {
+        setTotalPrice(countTotalPrice(currentBasketItems))
     }, [currentBasketItems, menuItems])
 
     if (!menuItems?.length) return <div className="basket-items-list"></div>
@@ -34,7 +37,7 @@ const BasketItemsList: FC = () => {
                 .filter(basketItem => basketItem.amount > 0)
                 .map(basketItem => {
                     const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
-                    return <BasketItem key={currentMenuItem.id} menuItem={currentMenuItem} amount={basketItem.amount} />
+                    return <BasketItem key={currentMenuItem.id} setTotalPrice={setTotalPrice} menuItem={currentMenuItem} amount={basketItem.amount} />
                 })}
             {totalPrice > 0 ? <h2>ИТОГО: {totalPrice}&#8381;</h2> : ''}
             {totalPrice > 0 ? <Button variant='secondary' className='checkout-button' href='/checkout' >ОФОРМИТЬ ЗАКАЗ</Button> : ''}

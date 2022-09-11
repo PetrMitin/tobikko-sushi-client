@@ -20,8 +20,7 @@ const AppRouter: FC = () => {
             <Routes>
                 {!isPageDisabled && publicRoutes.map(({path, Component}) => <Route key={path} path={path} element={<Component />}/>)}
                 <Route path={errorRoute.path} element={<errorRoute.Component />} />
-                <Route path={landingRoute.path} element={<landingRoute.Component />} />
-                <Route path='*' element={<Navigate to="/" replace />} />
+                <Route path='*' element={<Navigate to="/menu" replace />} />
             </Routes>
         </div>
     )

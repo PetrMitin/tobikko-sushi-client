@@ -28,7 +28,19 @@ export const EMPTY_NAME_ERROR: IError = {
 
 export const imgs: IImage[] = [
     {
-        src: `https://e.mail.ru/cgi-bin/getattach?file=IMG_7531.jpg&id=16576525211722657325%3B0%3B1&mode=attachment&x-email=petr09mitin%40mail.ru`, 
-        alt: 'Пятый слайд'
-    }
+        src: `${API_URL}/ollie-bledniy.jpg`, 
+        alt: 'Олли Дабу'
+    },
+    {
+        src: `${API_URL}/sl1.jpeg`, 
+        alt: 'Олли Дабу'
+    },
+    {
+        src: `${API_URL}/sl2.jpeg`, 
+        alt: 'Олли Дабу'
+    },
+    {
+        src: `${API_URL}/sl3.jpeg`, 
+        alt: 'Олли Дабу'
+    },
 ]

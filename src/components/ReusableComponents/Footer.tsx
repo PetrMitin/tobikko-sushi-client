@@ -23,7 +23,6 @@ const Footer: FC = () => {
             <div className="footer-container w-100">
                 <div className="footer-col">
                     <Nav.Link href={MENU_ROUTE}>МЕНЮ</Nav.Link>
-                    <Nav.Link href={ABOUT_RESTAURANT_ROUTE}>О РЕСТОРАНЕ</Nav.Link>
                     <Nav.Link href={DELIVERY_INFO_ROUTE}>О ДОСТАВКЕ</Nav.Link>
                 </div>
                 <div className="footer-col">
@@ -57,7 +56,6 @@ const Footer: FC = () => {
             <div className="footer-container w-100">
                 <div className="footer-col">
                     <Nav.Link href={MENU_ROUTE}>МЕНЮ</Nav.Link>
-                    <Nav.Link href={ABOUT_RESTAURANT_ROUTE}>О РЕСТОРАНЕ</Nav.Link>
                     <Nav.Link href={DELIVERY_INFO_ROUTE}>О ДОСТАВКЕ</Nav.Link>
                     <Nav.Link href="#footer">СПОСОБЫ ОПЛАТЫ</Nav.Link>
                     <Nav.Link href="#footer">

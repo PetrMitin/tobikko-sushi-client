@@ -46,7 +46,6 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
         } else {
             currentBasketItems[currentBasketItems.indexOf(prevCurrentBasketItem)] = newCurrentBasketItem
         }
-        localStorage.setItem('currentBasketItems', JSON.stringify(currentBasketItems))
         dispatch(UserActionCreators.setCurrentBasketItems(currentBasketItems))
         return () => {
             localStorage.setItem('currentBasketItems', JSON.stringify(currentBasketItems))

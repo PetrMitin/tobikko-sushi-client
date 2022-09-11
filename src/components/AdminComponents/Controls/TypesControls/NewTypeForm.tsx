@@ -22,6 +22,7 @@ const NewTypeForm: FC = () => {
     const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault()
         if (!newTypeName || !newTypeIcon) return alert('Проверьте введенные данные!')
+        window.alert(newTypeName + ' ' + newTypeIcon + ' UI')
         dispatch(AdminActionCreators.createNewType(newTypeName, newTypeIcon))
         window.location.reload()
     }

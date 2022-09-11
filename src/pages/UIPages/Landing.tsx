@@ -37,7 +37,7 @@ const Landing: FC = () => {
             ? <Countdown />
             : <Fragment>
                 <CustomNavbar />
-                {/* <Showcase imgs={imgs} /> */}
+                <Showcase imgs={imgs} />
                 {dWidth <= 470 && <SmallNavbar />}
                 <LandingInfoPannel />
                 <Footer />

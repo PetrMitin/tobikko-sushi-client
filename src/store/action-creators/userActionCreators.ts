@@ -88,10 +88,13 @@ export class UserActionCreators {
         payload: filter
     })
 
-    static setCurrentBasketItems = (currentBasketItems: ICurrentBasketItem[]): action => ({
-        type: ActionsTypes.SET_CURRENT_BASKET_ITEMS,
-        payload: currentBasketItems
-    })
+    static setCurrentBasketItems = (currentBasketItems: ICurrentBasketItem[]): action => {
+        localStorage.setItem('currentBasketItems', JSON.stringify(currentBasketItems))
+        return {
+            type: ActionsTypes.SET_CURRENT_BASKET_ITEMS,
+            payload: currentBasketItems
+        }
+    }
 
     static setErrorAction = (error: IServerError | null): action => ({
         type: ActionsTypes.SET_ERROR,

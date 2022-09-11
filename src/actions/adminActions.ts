@@ -5,6 +5,8 @@ import { IMenuItemData } from "../utils/interfaces/apiInterfaces"
 import { IMenuItemType, IMenuItemInfo } from "../utils/interfaces/dbInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
+axios.defaults.withCredentials = true
+
 class AdminApiActions {
     baseApiUrl = `${API_URL}/api`
 
@@ -48,10 +50,17 @@ class AdminApiActions {
         let formData = new FormData()
         formData.append('icon', icon)
         formData.append('name', name)
-        const res = await $admin_api.post('/api/type/', formData, {
+        let obj: any = {}
+        formData.forEach((value, key) => obj[key] = value)
+        window.alert(JSON.stringify(obj))
+        const res = await axios({
+            url: `${API_URL}/api/type/`,
+            method: 'POST',
+            data: formData,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
         return res.data
     }
@@ -60,19 +69,26 @@ class AdminApiActions {
         let formData = new FormData()
         formData.append('icon', icon || '')
         formData.append('name', name || '')
-        const res = await $admin_api.put(`/api/type/${id}`, {name, icon}, {
+        const res = await axios({
+            url: `${API_URL}/api/type/${id}`,
+            method: 'PUT',
+            data: formData,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
         return res.data
     }
 
     deleteType = async (id: number) => {
-        await $admin_api.delete(`/api/type/${id}`, {
+        await axios({
+            url: `${API_URL}/api/type/${id}`,
+            method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
     }
 
@@ -89,10 +105,14 @@ class AdminApiActions {
                 formData.append(key, typeof value === 'string' ? value : JSON.stringify(value))
             }
         }
-        const res = await $admin_api.post('/api/items/', formData, {
+        const res = await axios({
+            url: `${API_URL}/api/items/`,
+            method: 'POST',
+            data: formData,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
         return res.data
     }
@@ -110,16 +130,27 @@ class AdminApiActions {
                 formData.append(key, typeof value === 'string' ? value : JSON.stringify(value))
             }
         }
-        const res = await $admin_api.put(`/api/items/${id}`, formData, {
+        const res = await axios({
+            url: `${API_URL}/api/items/${id}`,
+            method: 'PUT',
+            data: formData,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
         return res.data
     }
 
     deleteMenuItem = async (id: number) => {
-        await $admin_api.delete(`/api/items/${id}`)
+        await axios({
+            url: `${API_URL}/api/items/${id}`,
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
     }
 }
 
