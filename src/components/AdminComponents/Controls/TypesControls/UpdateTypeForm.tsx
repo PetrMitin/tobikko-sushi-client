@@ -24,7 +24,7 @@ const UpdateTypeForm: FC<{type: IMenuItemType}> = ({type}) => {
         e.preventDefault()
         if (!typeName || !typeIcon) return alert('Проверьте введенные данные!')
         dispatch(AdminActionCreators.updateType(type.id, typeName, typeIcon instanceof File ? typeIcon : undefined))
-        window.location.reload()
+        //window.location.reload()
     }
 
     const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {

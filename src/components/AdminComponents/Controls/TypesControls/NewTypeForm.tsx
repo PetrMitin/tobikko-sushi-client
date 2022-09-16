@@ -24,7 +24,7 @@ const NewTypeForm: FC = () => {
         if (!newTypeName || !newTypeIcon) return alert('Проверьте введенные данные!')
         window.alert(newTypeName + ' ' + newTypeIcon + ' UI')
         dispatch(AdminActionCreators.createNewType(newTypeName, newTypeIcon))
-        window.location.reload()
+        //window.location.reload()
     }
 
     return (

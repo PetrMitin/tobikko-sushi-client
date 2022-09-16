@@ -52,13 +52,9 @@ class AdminApiActions {
         formData.append('name', name)
         let obj: any = {}
         formData.forEach((value, key) => obj[key] = value)
-        window.alert(JSON.stringify(obj))
-        const res = await axios({
-            url: `${API_URL}/api/type/`,
-            method: 'POST',
-            data: formData,
+        const res = await axios.post(`${API_URL}/api/type/`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })
@@ -69,12 +65,9 @@ class AdminApiActions {
         let formData = new FormData()
         formData.append('icon', icon || '')
         formData.append('name', name || '')
-        const res = await axios({
-            url: `${API_URL}/api/type/${id}`,
-            method: 'PUT',
-            data: formData,
+        const res = await axios.put(`${API_URL}/api/type/${id}`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })
@@ -98,19 +91,25 @@ class AdminApiActions {
         for (key in newMenuItem) {
             const value = newMenuItem[key]
             if (value instanceof File) {
-                formData.append(key, value)
-            } else if (value === undefined) {
+                if (value.name) {
+                    formData.append(key, value)
+                } else {
+                    window.alert('Invalid image specified')
+                    throw new Error('Invalid image specified')
+                }
+            } else if (
+                    value === undefined 
+                    || (value.constructor === Array && value.length === 0)
+                ) {
+                window.alert('Invalid data specified')
                 throw new Error('Invalid data specified')
             } else {
                 formData.append(key, typeof value === 'string' ? value : JSON.stringify(value))
             }
         }
-        const res = await axios({
-            url: `${API_URL}/api/items/`,
-            method: 'POST',
-            data: formData,
+        const res = await axios.post(`${API_URL}/api/items/`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })
@@ -124,18 +123,15 @@ class AdminApiActions {
             const value = newMenuItem[key]
             if (value instanceof File) {
                 formData.append(key, value)
-            } else if (value === undefined) {
+            } else if (value === undefined || (value.constructor === Array && value.length === 0)) {
                 formData.append(key, '')
             } else {
                 formData.append(key, typeof value === 'string' ? value : JSON.stringify(value))
             }
         }
-        const res = await axios({
-            url: `${API_URL}/api/items/${id}`,
-            method: 'PUT',
-            data: formData,
+        const res = await axios.put(`${API_URL}/api/items/${id}`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })

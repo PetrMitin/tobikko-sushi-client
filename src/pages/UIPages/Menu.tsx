@@ -5,9 +5,11 @@ import MenuItemsList from "../../components/MenuComponents/MenuItemsList";
 import CustomNavbar from "../../components/ReusableComponents/Navbar";
 import PopupLogo from "../../components/LandingComponents/PopupLogo";
 import SmallNavbar from "../../components/ReusableComponents/SmallNavbar";
+import { useAppSelector } from "../../store/hooks";
 
 const Menu: FC = () => {
     const [isPopupShown, setIsPopupShown] = useState<boolean>(true)
+    const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled) 
     const [dWidth, setDWidth] = useState(window.innerWidth)
 
     useEffect(() => {
@@ -28,13 +30,13 @@ const Menu: FC = () => {
     
     return (
         isPopupShown 
-            ? <PopupLogo />:
-        <div id="menu-container">
+            ? <PopupLogo /> :
+        (isPageDisabled ? <PopupLogo /> : <div id="menu-container">
             <CustomNavbar whatIsActive="menu" />
             {dWidth <= 470 && <SmallNavbar />}
             <ContentWithMenu Component={MenuItemsList} />
             <Footer />
-        </div>
+        </div>)
     )
 }
 

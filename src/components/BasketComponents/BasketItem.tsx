@@ -14,7 +14,7 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
     const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []
     const basketId = useAppSelector(state => state.user?.basket?.id)
     const baseApiUrl = API_URL
-    const [amountCounter, setAmountCounter] = useState(amount || currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)?.amount || 0)
+    const [amountCounter, setAmountCounter] = useState(amount || currentBasketItems.find(item => item.menuItemId === menuItem.id)?.amount || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
@@ -50,7 +50,7 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
             menuItemId: menuItem.id,
             basketId: basketId ? basketId : 0
         }
-        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)
+        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
         if (!prevCurrentBasketItem) {
             currentBasketItems.push(newCurrentBasketItem)
         } else {

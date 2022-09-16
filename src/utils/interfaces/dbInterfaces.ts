@@ -46,7 +46,7 @@ export interface IBasketItem {
 
 export interface ICurrentBasketItem {
     amount: number,
-    basketId: number,
+    basketId: number | null,
     menuItemId: number
 }
 

@@ -87,7 +87,7 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
         }
         window.alert(JSON.stringify(newMenuItem))
         dispatch(AdminActionCreators.updateMenuItem(item.id, newMenuItem))
-        window.location.reload()
+        //window.location.reload()
         dispatch(UserActionCreators.getMenuItems())
     }
 

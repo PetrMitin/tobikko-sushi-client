@@ -5,5 +5,10 @@
     display: flex;
     flex-direction: row;
     justify-content: start;
+    align-items: center;
     margin-right: 1%;
+    
+    .selected-type-arrow {
+        margin-left: 2%;
+    }
 }

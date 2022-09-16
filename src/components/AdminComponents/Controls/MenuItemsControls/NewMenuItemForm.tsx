@@ -79,7 +79,7 @@ const NewMenuItemForm: FC = () => {
             info: infoArray
         }
         dispatch(AdminActionCreators.createNewMenuItem(newMenuItem))
-        window.location.reload()
+        // window.location.reload()
         dispatch(UserActionCreators.getMenuItems())
     }
 

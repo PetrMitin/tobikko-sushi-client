@@ -6,6 +6,7 @@ import MenuItemInfo from './MenuItemInfo'
 import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfaces'
 import { API_URL } from '../../utils/consts/urlConsts'
 import { UserActionCreators } from '../../store/action-creators/userActionCreators'
+import { BASKET_ROUTE } from '../../utils/consts/routeConsts'
 
 const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const currentBasketItems = prevCurrentBasketItems
     const basketId = useAppSelector(state => state.user?.basket?.id)
     const baseApiUrl = API_URL
-    const [amountCounter, setAmountCounter] = useState(currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)?.amount || 0)
+    const [amountCounter, setAmountCounter] = useState(currentBasketItems.find(item => item.menuItemId === menuItem.id)?.amount || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
@@ -24,6 +25,10 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
 
     const handleDecrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState <= 0 ? prevState : prevState - 1)
+    }
+
+    const handleToBasketClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+        setAmountCounter(prevState => prevState > 0 ? prevState : 1)
     }
 
     useEffect(() => {
@@ -40,7 +45,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
             menuItemId: menuItem.id,
             basketId: basketId ? basketId : 0
         }
-        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id && item.basketId === basketId)
+        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
         if (!prevCurrentBasketItem) {
             currentBasketItems.push(newCurrentBasketItem)
         } else {
@@ -70,7 +75,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
                         <Button variant="secondary" onClick={handleDecrement}>-</Button>
                         <Button variant="primary" disabled={true} >{amountCounter}</Button>
                         <Button variant="secondary" onClick={handleIncrement}>+</Button>
-                        <Button href='/basket' variant="secondary" className='to-basket-button'>ЗАКАЗАТЬ</Button>
+                        <Button href={BASKET_ROUTE} onClick={handleToBasketClick} variant="secondary" className='to-basket-button'>ЗАКАЗАТЬ</Button>
                     </ButtonGroup><br />
                 </div>
             </Card.Body>
