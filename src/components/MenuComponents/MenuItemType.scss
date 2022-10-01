@@ -1,14 +1,14 @@
 .types-list-container {
     width: 100%;
-    min-width: max-content;
+    min-width: 17vw;
+    white-space: nowrap;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
     margin-right: 1%;
-    
-    .selected-type-arrow {
-        margin-left: 2%;
+    span {
+        margin-right: 2%;
     }
 }

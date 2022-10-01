@@ -9,6 +9,7 @@ const initialState: IUserState = {
     menuItems: [],
     menuItemTypesFilter: null,
     menuItemTypes: [],
+    totalDiscounts: [],
     isLoading: false,
     error: null
 }
@@ -19,6 +20,8 @@ const userReducer: Reducer<IUserState | undefined, action | {type: ''}> = (state
             return {...state, user: action.payload.user, basket: action.payload.basket}
         case ActionsTypes.SET_CURRENT_BASKET_ITEMS:
             return {...state, currentBasketItems: action.payload}
+        case ActionsTypes.SET_TOTAL_DISCOUNTS:
+            return {...state, totalDiscounts: action.payload}
         case ActionsTypes.GET_MENU_ITEMS:
             return {...state, menuItems: action.payload}
         case ActionsTypes.GET_MENU_ITEM_TYPES:

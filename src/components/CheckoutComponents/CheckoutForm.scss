@@ -36,3 +36,20 @@ label {
     align-items: center;
     justify-content: space-around;
 }
+
+a {
+    color: orangered;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: darkorange;
+    text-decoration: underline;
+}
+
+.personal-data-label {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+}

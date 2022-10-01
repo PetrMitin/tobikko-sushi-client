@@ -2,6 +2,7 @@ export interface IMenuItem {
     id: number,
     name: string,
     price: number,
+    halfportionprice: number | null,
     massInGramms: number,
     image: string,
     menu_item_types: IMenuItemType[],
@@ -47,7 +48,8 @@ export interface IBasketItem {
 export interface ICurrentBasketItem {
     amount: number,
     basketId: number | null,
-    menuItemId: number
+    menuItemId: number,
+    isHalfPortion: boolean
 }
 
 export interface IUser {

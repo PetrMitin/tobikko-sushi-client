@@ -1,4 +1,4 @@
-import { IServerError } from "./apiInterfaces"
+import { IDiscount, IServerError } from "./apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "./dbInterfaces"
 
 export interface IUserState {
@@ -8,6 +8,7 @@ export interface IUserState {
     menuItems: IMenuItem[],
     menuItemTypesFilter: null | number,
     menuItemTypes: IMenuItemType[],
+    totalDiscounts: IDiscount[],
     isLoading: boolean,
     error: IServerError | null
 }

@@ -1,6 +1,7 @@
 import {FC, useEffect, useRef, useState} from 'react'
 import { Button } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector} from '../../store/hooks'
+import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
 import { ICurrentBasketItem, IMenuItem } from '../../utils/interfaces/dbInterfaces'
 import BasketItem from './BasketItem'
 import './BasketItemsList.scss'
@@ -10,6 +11,7 @@ const BasketItemsList: FC = () => {
     const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []
     const menuItems = useAppSelector(state => state.user?.menuItems || [])   
     const [totalPrice, setTotalPrice] = useState(0) 
+    const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
 
     const countTotalPrice = (currentBasketItems: ICurrentBasketItem[]) => {
         let cTotalPrice = 0
@@ -18,7 +20,10 @@ const BasketItemsList: FC = () => {
             if (!currentMenuItem.price) {
                 currentMenuItem.price = 0
             }
-            cTotalPrice += currentMenuItem.price * basketItem.amount
+            const mult = isDate20DiscountActive ? 0.8 : 1
+            cTotalPrice += ((basketItem.isHalfPortion && currentMenuItem.halfportionprice) 
+                            ? Math.ceil(currentMenuItem.halfportionprice * mult) * basketItem.amount
+                            : Math.ceil(currentMenuItem.price * mult) * basketItem.amount)
         })
         return cTotalPrice
     }

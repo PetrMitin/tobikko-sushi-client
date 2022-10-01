@@ -1,6 +1,6 @@
 import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { IServerError } from "../../utils/interfaces/apiInterfaces"
+import { IDiscount, IServerError } from "../../utils/interfaces/apiInterfaces"
 import { ICurrentBasketItem } from "../../utils/interfaces/dbInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
@@ -66,12 +66,13 @@ export class UserActionCreators {
         address: string, 
         deliveryRegion: IDeliveryRegion,
         paymentMethod: 'courier' | 'online',
+        discounts: IDiscount[],
         currentBasketItems: ICurrentBasketItem[],
         comment?: string) => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
             try {
                 dispatch(this.setIsLoadingAction(true))
-                const res = await userApiActions.initializePayment(userId, phone, email, name, address, deliveryRegion, paymentMethod, currentBasketItems, comment)
+                const res = await userApiActions.initializePayment(userId, phone, email, name, address, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment)
                 dispatch({type: ActionsTypes.INITIALIZE_PAYMENT})
                 console.log(res)
                 dispatch(this.setErrorAction(null))
@@ -93,6 +94,13 @@ export class UserActionCreators {
         return {
             type: ActionsTypes.SET_CURRENT_BASKET_ITEMS,
             payload: currentBasketItems
+        }
+    }
+
+    static setTotalDiscounts = (totalDiscounts: IDiscount[]): action => {
+        return {
+            type: ActionsTypes.SET_TOTAL_DISCOUNTS,
+            payload: totalDiscounts
         }
     }
 

@@ -13,10 +13,12 @@ import CheckoutBasketItemsList from "./CheckoutBasketItemsList";
 import { ICurrentBasketItem } from "../../utils/interfaces/dbInterfaces";
 import DeliveryRegionsList from "../DeliveryInfoComponents/DeliveryRegionsList";
 import { CLIENT_URL } from "../../utils/consts/urlConsts";
+import { PERSONAL_DATA_AGREEMENT_ROUTE } from "../../utils/consts/routeConsts";
 
 const CheckoutForm: FC = () => {
     const dispatch = useAppDispatch()
     const userId = useAppSelector(state => state.user?.user?.id) || 0
+    const discounts = useAppSelector(state => state.user?.totalDiscounts) || []
     const [phone, setPhone] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -25,6 +27,7 @@ const CheckoutForm: FC = () => {
     const [paymentMethod, setPaymentMethod] = useState('courier')
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState<IError[]>([])
+    const [agreedPersonalData, setAgreedPersonalData] = useState(false)
 
     useEffect(() => {
         const isValidEmail = Validators.isValidEmail(email)
@@ -81,11 +84,15 @@ const CheckoutForm: FC = () => {
         setComment(e.target.value)
     }
 
+    const handleAgreedPersonalDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setAgreedPersonalData(prev => !prev)
+    }
+
     const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault()
         console.log(email, phone, name, currentAddress, deliveryRegion, comment);
         const currentBasketItems = JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[]
-        dispatch(UserActionCreators.initializePayment(userId, phone, email, name, currentAddress, deliveryRegion, paymentMethod, currentBasketItems, comment))
+        dispatch(UserActionCreators.initializePayment(userId, phone, email, name, currentAddress, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment))
         dispatch(UserActionCreators.setCurrentBasketItems([]))
         localStorage.setItem('currentBasketItems', '[]')
         window.location.assign(`${CLIENT_URL}/successful-checkout`)
@@ -145,14 +152,14 @@ const CheckoutForm: FC = () => {
                         value='courier'
                         onChange={handlePaymentMethodChange}
                         checked={paymentMethod === 'courier'} />
-                    <Form.Check 
+                    {/* <Form.Check 
                         inline 
                         name='payment-method-check' 
                         label='Картой или электронным кошельком онлайн' 
                         value='online'
                         type='radio'
                         onChange={handlePaymentMethodChange}
-                        checked={paymentMethod === 'online'} />
+                        checked={paymentMethod === 'online'} /> */}
                 </Form.Label>
                 <br/>
                 <Form.Label>
@@ -162,7 +169,18 @@ const CheckoutForm: FC = () => {
                 <h3>ВАШ ЗАКАЗ</h3>
                 <CheckoutBasketItemsList deliveryPrice={parseInt(deliveryRegion?.price || '0') || 0} />
                 {errors.length > 0 && <SubmitErrorList errors={errors} />}
-                <Button className='submit-button' disabled={errors.length > 0} onClick={handleSubmit}>ОФОРМИТЬ ЗАКАЗ</Button>
+                <Form.Label className="personal-data-label">
+                    <Form.Check 
+                        name='personal-data-agreement-check'
+                        type='checkbox'
+                        id='personal-data-checkbox'
+                        onChange={handleAgreedPersonalDataChange}
+                        checked={agreedPersonalData} />
+                        <span>
+                            Я <a href={PERSONAL_DATA_AGREEMENT_ROUTE}>даю согласие</a> на обработку своих персональных данных
+                        </span>
+                </Form.Label>
+                <Button className='submit-button' disabled={errors.length > 0 || !agreedPersonalData} onClick={handleSubmit}>ОФОРМИТЬ ЗАКАЗ</Button>
             </Form>
         </div>
     )

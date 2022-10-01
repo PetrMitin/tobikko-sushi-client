@@ -3,5 +3,19 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    flex: 0 0 80%;
+}
+
+.menu-items-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    h2 {
+        margin-top: 1%;
+    }
+}
+
+@media (max-width: 1040px) {
+    .menu-items-list-container {
+        width: 100%;
+    }
 }

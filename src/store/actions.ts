@@ -1,4 +1,4 @@
-import { IServerError } from "../utils/interfaces/apiInterfaces"
+import { IDiscount, IServerError } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
@@ -14,6 +14,7 @@ export enum ActionsTypes {
     SET_IS_PAGE_DISABLED = 'SET_IS_PAGE_DISABLED',
     REGISTRATE_USER = 'REGISTRATE_USER',
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
+    SET_TOTAL_DISCOUNTS = 'SET_TOTAL_DISCOUNTS',
     GET_MENU_ITEMS = 'GET_MENU_ITEMS',
     GET_MENU_ITEM_TYPES = 'GET_MENU_ITEM_TYPES',
     INITIALIZE_PAYMENT = 'INITIALIZE_PAYMENT',
@@ -73,6 +74,11 @@ interface SetCurrentBasketItemsAction {
     payload: ICurrentBasketItem[]
 }
 
+interface SetTotalDiscounts {
+    type: ActionsTypes.SET_TOTAL_DISCOUNTS,
+    payload: IDiscount[]
+}
+
 interface GetMenuItemsAction {
     type: ActionsTypes.GET_MENU_ITEMS,
     payload: IMenuItem[]
@@ -113,6 +119,7 @@ export type action = AuthorizeAdminAction |
                     SetIsPageDisabledAction | 
                     RegistrateUserAction | 
                     SetCurrentBasketItemsAction | 
+                    SetTotalDiscounts |
                     GetMenuItemsAction | 
                     GetMenuItemTypesAction | 
                     SetMenuItemTypesFilterAction | 

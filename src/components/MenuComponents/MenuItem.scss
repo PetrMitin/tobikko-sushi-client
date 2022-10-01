@@ -24,6 +24,25 @@
     align-items: center;
 }
 
+.portion-size-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2%;
+
+    .portion-size-option {
+        border: 1px solid orangered;
+        width: 40%;
+        border-radius: 5%;
+    }
+
+    .selected-portion-size-option {
+        background-color: orangered;
+    }
+}
+
 .btn {
     border-color: rgba(255, 69, 0, 1) !important;
     color: white !important;
@@ -33,12 +52,27 @@
     background: rgba(255, 69, 0, 1) !important;
 }
 
+.to-basket-button {
+    display: flex;
+    align-items: center;
+}
+
 .info-container {
     color: lightgrey;
     text-align: left;
 }
 
-@media (max-width: 1300px) {
+.discount-label {
+    position: absolute;
+    width: 20%;
+    left: 80%;
+    background-color: black;
+    border-bottom: 1px solid orangered;
+    border-left: 1px solid orangered;
+    border-bottom-left-radius: 30%;
+}
+
+@media (max-width: 1400px) {
     .menu-item {
         flex: 0 0 47%;
     }

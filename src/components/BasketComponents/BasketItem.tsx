@@ -1,11 +1,11 @@
 import {Dispatch, FC, MouseEventHandler, useEffect, useRef, useState} from 'react'
 import { Button, ButtonGroup, Card } from 'react-bootstrap'
-import MenuItemInfo from '../MenuComponents/MenuItemInfo'
 import './BasketItem.scss'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfaces'
 import { API_URL } from '../../utils/consts/urlConsts'
 import { UserActionCreators } from '../../store/action-creators/userActionCreators'
+import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
 
 const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispatch<React.SetStateAction<number>>}> = ({menuItem, amount, setTotalPrice}) => {
     // console.log(menuItem);
@@ -14,7 +14,11 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
     const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []
     const basketId = useAppSelector(state => state.user?.basket?.id)
     const baseApiUrl = API_URL
-    const [amountCounter, setAmountCounter] = useState(amount || currentBasketItems.find(item => item.menuItemId === menuItem.id)?.amount || 0)
+    const currentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
+    const [amountCounter, setAmountCounter] = useState(amount || currentBasketItem?.amount || 0)
+    const noDiscountPrice = currentBasketItem?.isHalfPortion ? menuItem.halfportionprice : menuItem.price
+    const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
+    const totalPrice = isDate20DiscountActive ? Math.ceil(((noDiscountPrice || 0) * 0.8)) : (noDiscountPrice || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
@@ -45,12 +49,13 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
             dispatch(UserActionCreators.setCurrentBasketItems(prevCurrentBasketItems))
             return 
         }
+        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
         const newCurrentBasketItem: ICurrentBasketItem = {
             amount: amountCounter,
             menuItemId: menuItem.id,
+            isHalfPortion: prevCurrentBasketItem?.isHalfPortion || false,
             basketId: basketId ? basketId : 0
         }
-        const prevCurrentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
         if (!prevCurrentBasketItem) {
             currentBasketItems.push(newCurrentBasketItem)
         } else {
@@ -74,7 +79,7 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
                 </div>
                 <div className="basket-item-controls">
                     <div className="item-price">
-                        {menuItem.price * amountCounter}&#8381;
+                        {totalPrice * amountCounter}&#8381;
                     </div>
                     <ButtonGroup aria-label="counter-buttons">
                         <Button variant="secondary" onClick={handleDecrement}>-</Button>

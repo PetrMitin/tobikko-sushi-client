@@ -18,7 +18,9 @@ const CheckoutBasketItemsList: FC<{deliveryPrice: number}> = ({deliveryPrice}) =
             if (!currentMenuItem.price) {
                 currentMenuItem.price = 0
             }
-            cTotalPrice += currentMenuItem.price * basketItem.amount
+            cTotalPrice += (basketItem.isHalfPortion && currentMenuItem.halfportionprice) 
+                            ? currentMenuItem.halfportionprice * basketItem.amount
+                            : currentMenuItem.price * basketItem.amount
         })
         return cTotalPrice
     }

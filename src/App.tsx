@@ -6,6 +6,7 @@ import { useAppDispatch } from './store/hooks';
 import { AdminActionCreators } from './store/action-creators/adminActionCreators';
 import { UserActionCreators } from './store/action-creators/userActionCreators';
 import { ICurrentBasketItem } from './utils/interfaces/dbInterfaces';
+import { DATE20_DISCOUNT } from './utils/consts/apiConsts';
 
 
 
@@ -20,6 +21,9 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(AdminActionCreators.checkAuthAdmin())
+    if ((new Date).getDate() === 26) {
+      dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
+    }
   }, [])
 
   return (

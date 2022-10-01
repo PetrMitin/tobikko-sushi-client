@@ -99,7 +99,7 @@ class AdminApiActions {
                 }
             } else if (
                     value === undefined 
-                    || (value.constructor === Array && value.length === 0)
+                    || (value !== null && value.constructor === Array && value.length === 0)
                 ) {
                 window.alert('Invalid data specified')
                 throw new Error('Invalid data specified')
@@ -123,7 +123,7 @@ class AdminApiActions {
             const value = newMenuItem[key]
             if (value instanceof File) {
                 formData.append(key, value)
-            } else if (value === undefined || (value.constructor === Array && value.length === 0)) {
+            } else if (value === undefined || (value !== null && value.constructor === Array && value.length === 0)) {
                 formData.append(key, '')
             } else {
                 formData.append(key, typeof value === 'string' ? value : JSON.stringify(value))

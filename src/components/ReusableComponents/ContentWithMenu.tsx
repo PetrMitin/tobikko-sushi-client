@@ -1,6 +1,9 @@
 import {FC, useEffect, useState} from 'react' 
+import { useAppSelector } from '../../store/hooks'
+import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
 import MenuTypesList from '../MenuComponents/MenuTypesList'
 import './ContentWithMenu.scss'
+import DiscountBanner from './DiscountBanner'
 
 const ContentWithMenu: FC<{Component: FC}> = ({Component}) => {
     const [dWidth, setDWidth] = useState(window.innerWidth)

@@ -44,7 +44,7 @@ const MenuTypesList: FC<{variant: 'vertical' | 'horizontal'}> = ({variant}) => {
                 {isExpanded && <ListGroup variant="flush" className='menu-types-container menu-types-container-wide'>
                     {menuItemTypes
                     ?.map(menuItemType => (
-                        <MenuItemType key={menuItemType.id} menuItemType={menuItemType} />
+                        <MenuItemType setIsListExpanded={setIsExpanded} key={menuItemType.id} menuItemType={menuItemType} />
                     ))}
                 </ListGroup>}
             </div>

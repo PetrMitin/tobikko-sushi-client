@@ -13,6 +13,8 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
     const dispatch = useAppDispatch()
     const [name, setName] = useState(item.name)
     const [price, setPrice] = useState(item.price)
+    const [hasHalfPortionPrice, setHasHalfPortionPrice] = useState(!!item.halfportionprice)
+    const [halfPortionPrice, setHalfPortionPrice] = useState<number | null>(item.halfportionprice)
     const [massInGramms, setMassInGramms] = useState(item.massInGramms)
     const [newImage, setNewImage] = useState<File | null>(null)
     const [currentInfoTitle, setCurrentInfoTitle] = useState('')
@@ -27,6 +29,14 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
 
     const handlePriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setPrice(parseInt(e.target.value))
+    }
+
+    const handleHasHalfPortionPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setHasHalfPortionPrice(prev => !prev)
+    }
+
+    const handleHalfPortionPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setHalfPortionPrice(parseFloat(e.target.value))
     }
 
     const handleMassChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -80,12 +90,12 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
         const newMenuItem: IMenuItemData = {
             name: name,
             price: price,
+            halfportionprice: halfPortionPrice,
             massInGramms: massInGramms,
             image: newImage ? newImage : undefined,
             menuItemTypesId: typesArray.map(type => type.id),
             info: infoArray
         }
-        window.alert(JSON.stringify(newMenuItem))
         dispatch(AdminActionCreators.updateMenuItem(item.id, newMenuItem))
         //window.location.reload()
         dispatch(UserActionCreators.getMenuItems())
@@ -104,6 +114,23 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
                     <h4>Введите цену (р)</h4>
                     <Form.Control defaultValue={price} type='number' placeholder="Введите цену" onChange={handlePriceChange} />
                 </Form.Label>
+                <Form.Label>
+                    <h4>Есть ли возможность заказать половину порции?</h4>
+                    <Form.Check 
+                        type='checkbox' 
+                        onChange={handleHasHalfPortionPriceChange} 
+                        checked={hasHalfPortionPrice} />
+                </Form.Label>
+                {hasHalfPortionPrice && 
+                <Form.Label>
+                    <h4>Введите цену за половину порции (р)</h4>
+                    <Form.Control 
+                        type='number' 
+                        placeholder="Введите цену за половину порции" 
+                        onChange={handleHalfPortionPriceChange}
+                        value={halfPortionPrice ? halfPortionPrice : undefined}
+                        />
+                </Form.Label>}
                 <br/>
                 <Form.Label>
                     <h4>Введите массу в граммах</h4>

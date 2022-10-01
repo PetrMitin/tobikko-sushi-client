@@ -7,6 +7,7 @@ export interface IServerError {
 export interface IMenuItemData {
     name?: string,
     price?: number,
+    halfportionprice?: number | null,
     massInGramms?: number,
     image?: File,
     menuItemTypesId?: number[],
@@ -16,6 +17,12 @@ export interface IMenuItemData {
 export interface IMenuItemInfoData {
     title: string,
     info: string
+}
+
+export interface IDiscount {
+    name: string,
+    multiplier: number,
+    menuItemIds?: number[]
 }
 
 export interface IDaDataSuggestion {

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { DADATA_API_TOKEN } from "../utils/consts/apiConsts"
 import { ADDRESS_API_URL, API_URL } from "../utils/consts/urlConsts"
-import { IDaDataSuggestionResponse } from "../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestionResponse, IDiscount } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, IMenuItem, IMenuItemType, ICurrentBasketItem } from "../utils/interfaces/dbInterfaces"
 import { IDeliveryRegion } from "../utils/interfaces/UIInterfaces"
 
@@ -44,6 +44,7 @@ class UserApiActions {
         address: string, 
         deliveryRegion: IDeliveryRegion,
         paymentMethod: 'courier' | 'online',
+        discounts: IDiscount[],
         currentBasketItems: ICurrentBasketItem[],
         comment?: string): Promise<any> => {
             console.log(currentBasketItems);
@@ -64,6 +65,7 @@ class UserApiActions {
             address, 
             deliveryRegion,
             paymentMethod, 
+            discounts,
             currentBasketItems,
             comment
         }, {
