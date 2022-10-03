@@ -39,7 +39,7 @@ const Menu: FC = () => {
             : <div id="menu-container">
                 <CustomNavbar whatIsActive="menu" />
                 {totalDiscounts.includes(DATE20_DISCOUNT) && <DiscountBanner />}
-                {dWidth <= 470 && <SmallNavbar />}
+                {dWidth <= 470 && <SmallNavbar variant="menu" />}
                 <ContentWithMenu Component={MenuItemsList} />
                 <Footer />
             </div>)

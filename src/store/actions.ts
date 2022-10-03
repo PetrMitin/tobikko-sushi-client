@@ -1,4 +1,4 @@
-import { IDiscount, IServerError } from "../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestion, IDiscount, IServerError } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
@@ -17,6 +17,8 @@ export enum ActionsTypes {
     SET_TOTAL_DISCOUNTS = 'SET_TOTAL_DISCOUNTS',
     GET_MENU_ITEMS = 'GET_MENU_ITEMS',
     GET_MENU_ITEM_TYPES = 'GET_MENU_ITEM_TYPES',
+    GET_ADDRESS_SUGGESTIONS = 'GET_ADDRESS_SUGGESTIONS',
+    SET_ADDRESS_SUGGESTIONS = 'SET_ADDRESS_SUGGESTIONS',
     INITIALIZE_PAYMENT = 'INITIALIZE_PAYMENT',
     SET_MENU_ITEM_TYPES_FILTER = 'SET_MENU_ITEM_TYPES_FILTER',
     SET_ERROR = 'SET_ERROR',
@@ -89,6 +91,16 @@ interface GetMenuItemTypesAction {
     payload: IMenuItemType[]
 }
 
+interface GetAddressSuggestions {
+    type: ActionsTypes.GET_ADDRESS_SUGGESTIONS,
+    payload: IDaDataSuggestion[]
+}
+
+interface SetAddressSuggestions {
+    type: ActionsTypes.SET_ADDRESS_SUGGESTIONS,
+    payload: IDaDataSuggestion[]
+}
+
 interface InitializePaymentAction {
     type: ActionsTypes.INITIALIZE_PAYMENT
 }
@@ -122,6 +134,8 @@ export type action = AuthorizeAdminAction |
                     SetTotalDiscounts |
                     GetMenuItemsAction | 
                     GetMenuItemTypesAction | 
+                    GetAddressSuggestions |
+                    SetAddressSuggestions |
                     SetMenuItemTypesFilterAction | 
                     SetErrorAction | 
                     SetIsLoadingAction | 

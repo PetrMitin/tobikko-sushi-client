@@ -22,6 +22,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const [amountCounter, setAmountCounter] = useState(currentBasketItem?.amount || 0)
     const [isHalfPortion, setIsHalfPortion] = useState(currentBasketItem?.isHalfPortion || false)
     const [isPopupShown, setIsPopupShown] = useState(false)
+    const isSoup = menuItem.menu_item_types.filter(({name}) => name.toLowerCase().includes('суп')).length > 0
     const noDiscountPrice = isHalfPortion ? menuItem.halfportionprice : menuItem.price
     const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
     const totalPrice = isDate20DiscountActive ? Math.ceil(((noDiscountPrice || 0) * 0.8)) : noDiscountPrice
@@ -85,7 +86,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
             <Card.Body>
                 <Card.Title>{menuItem.name.toUpperCase()}</Card.Title>
                 <Card.Text className='info-container'>
-                    Масса: {menuItem.massInGramms} г. <br/>
+                    Масса: {isHalfPortion ? menuItem.halfportionmass : menuItem.massInGramms} г. <br/>
                     {menuItem.menu_item_infos.map(menuItemInfo => <MenuItemInfo menuItemInfo={menuItemInfo} key={menuItemInfo.id} />)}
                 </Card.Text>
                 {menuItem.halfportionprice &&
@@ -97,7 +98,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
                                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
                             </svg>}
-                            4 шт.
+                            {isSoup ? menuItem.halfportionmass.toString() + ' г.' : '4 шт.'}
                     </div>
                     <div 
                         className={`portion-size-option`} 
@@ -106,7 +107,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
                                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
                             </svg>}
-                            8 шт.
+                            {isSoup ? menuItem.massInGramms.toString() + ' г.' : '8 шт.'}
                     </div>
                 </div>
                 }

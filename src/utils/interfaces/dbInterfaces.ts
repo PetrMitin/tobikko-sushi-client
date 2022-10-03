@@ -3,6 +3,7 @@ export interface IMenuItem {
     name: string,
     price: number,
     halfportionprice: number | null,
+    halfportionmass: number,
     massInGramms: number,
     image: string,
     menu_item_types: IMenuItemType[],

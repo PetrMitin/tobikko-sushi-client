@@ -10,6 +10,7 @@ const initialState: IUserState = {
     menuItemTypesFilter: null,
     menuItemTypes: [],
     totalDiscounts: [],
+    addressSuggestions: [],
     isLoading: false,
     error: null
 }
@@ -26,6 +27,10 @@ const userReducer: Reducer<IUserState | undefined, action | {type: ''}> = (state
             return {...state, menuItems: action.payload}
         case ActionsTypes.GET_MENU_ITEM_TYPES:
             return {...state, menuItemTypes: action.payload}
+        case ActionsTypes.GET_ADDRESS_SUGGESTIONS:
+            return {...state, addressSuggestions: action.payload}
+        case ActionsTypes.SET_ADDRESS_SUGGESTIONS:
+            return {...state, addressSuggestions: action.payload}
         case ActionsTypes.SET_MENU_ITEM_TYPES_FILTER:
             return {...state, menuItemTypesFilter: action.payload}
         case ActionsTypes.SET_ERROR:

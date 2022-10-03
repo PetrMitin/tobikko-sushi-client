@@ -1,12 +1,11 @@
 import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { IDiscount, IServerError } from "../../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestion, IDiscount, IServerError } from "../../utils/interfaces/apiInterfaces"
 import { ICurrentBasketItem } from "../../utils/interfaces/dbInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
 import userApiActions from '../../actions/userActions'
 import { IDeliveryRegion } from "../../utils/interfaces/UIInterfaces"
-import { CLIENT_URL } from "../../utils/consts/urlConsts"
 
 export class UserActionCreators {
     static registrateUser: ActionCreator<
@@ -48,6 +47,23 @@ export class UserActionCreators {
                 dispatch(this.setIsLoadingAction(true))
                 const itemTypes = await userApiActions.getMenuItemTypes()
                 dispatch({type: ActionsTypes.GET_MENU_ITEM_TYPES, payload: itemTypes})
+                dispatch(this.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(this.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static getAddressSuggestions: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (query: string) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(this.setIsLoadingAction(true))
+                const suggestions = await userApiActions.getAddressSuggestions(query)
+                window.console.log(suggestions)
+                dispatch(this.setAddressSuggestions(suggestions))
                 dispatch(this.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
@@ -101,6 +117,13 @@ export class UserActionCreators {
         return {
             type: ActionsTypes.SET_TOTAL_DISCOUNTS,
             payload: totalDiscounts
+        }
+    }
+
+    static setAddressSuggestions = (suggestions: IDaDataSuggestion[]): action => {
+        return {
+            type: ActionsTypes.SET_ADDRESS_SUGGESTIONS,
+            payload: suggestions
         }
     }
 

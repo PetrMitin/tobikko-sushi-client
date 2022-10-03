@@ -15,6 +15,7 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
     const [price, setPrice] = useState(item.price)
     const [hasHalfPortionPrice, setHasHalfPortionPrice] = useState(!!item.halfportionprice)
     const [halfPortionPrice, setHalfPortionPrice] = useState<number | null>(item.halfportionprice)
+    const [halfPortionMass, setHalfPortionMass] = useState(item.halfportionmass || item.massInGramms)
     const [massInGramms, setMassInGramms] = useState(item.massInGramms)
     const [newImage, setNewImage] = useState<File | null>(null)
     const [currentInfoTitle, setCurrentInfoTitle] = useState('')
@@ -37,6 +38,10 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
 
     const handleHalfPortionPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setHalfPortionPrice(parseFloat(e.target.value))
+    }
+
+    const handleHalfPortionMassChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setHalfPortionMass(parseFloat(e.target.value))
     }
 
     const handleMassChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -91,6 +96,7 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
             name: name,
             price: price,
             halfportionprice: halfPortionPrice,
+            halfportionmass: halfPortionMass || massInGramms,
             massInGramms: massInGramms,
             image: newImage ? newImage : undefined,
             menuItemTypesId: typesArray.map(type => type.id),
@@ -122,6 +128,7 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
                         checked={hasHalfPortionPrice} />
                 </Form.Label>
                 {hasHalfPortionPrice && 
+                <>
                 <Form.Label>
                     <h4>Введите цену за половину порции (р)</h4>
                     <Form.Control 
@@ -130,7 +137,17 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
                         onChange={handleHalfPortionPriceChange}
                         value={halfPortionPrice ? halfPortionPrice : undefined}
                         />
-                </Form.Label>}
+                </Form.Label>
+                <Form.Label>
+                    <h4>Введите массу половины порции (г)</h4>
+                    <Form.Control 
+                        type='number' 
+                        placeholder="Введите массу половины порции" 
+                        onChange={handleHalfPortionMassChange}
+                        value={halfPortionMass ? halfPortionMass : undefined}
+                        />
+                </Form.Label>
+                </>}
                 <br/>
                 <Form.Label>
                     <h4>Введите массу в граммах</h4>

@@ -15,6 +15,7 @@ const NewMenuItemForm: FC = () => {
     const [price, setPrice] = useState(0)
     const [hasHalfPortionPrice, setHasHalfPortionPrice] = useState(false)
     const [halfPortionPrice, setHalfPortionPrice] = useState<number | null>(null)
+    const [halfPortionMass, setHalfPortionMass] = useState(0)
     const [massInGramms, setMassInGramms] = useState(0)
     const [newImage, setNewImage] = useState<File | null>(null)
     const [currentInfoTitle, setCurrentInfoTitle] = useState('')
@@ -37,6 +38,10 @@ const NewMenuItemForm: FC = () => {
 
     const handleHalfPortionPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setHalfPortionPrice(parseFloat(e.target.value))
+    }
+
+    const handleHalfPortionMassChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setHalfPortionMass(parseFloat(e.target.value))
     }
 
     const handleMassChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -84,6 +89,7 @@ const NewMenuItemForm: FC = () => {
             name: name,
             price: price,
             halfportionprice: halfPortionPrice,
+            halfportionmass: halfPortionMass || massInGramms,
             massInGramms: massInGramms,
             image: newImage ? newImage : undefined,
             menuItemTypesId: typesArray.map(type => type.id),
@@ -112,6 +118,7 @@ const NewMenuItemForm: FC = () => {
                     <Form.Check type='checkbox' onChange={handleHasHalfPortionPriceChange} checked={hasHalfPortionPrice} />
                 </Form.Label>
                 {hasHalfPortionPrice && 
+                <>
                 <Form.Label>
                     <h4>Введите цену за половину порции (р)</h4>
                     <Form.Control 
@@ -119,7 +126,16 @@ const NewMenuItemForm: FC = () => {
                         placeholder="Введите цену за половину порции" 
                         onChange={handleHalfPortionPriceChange}
                         />
-                </Form.Label>}
+                </Form.Label>
+                <Form.Label>
+                <h4>Введите массу половины порции (г)</h4>
+                <Form.Control 
+                    type='number' 
+                    placeholder="Введите массу половины порции" 
+                    onChange={handleHalfPortionMassChange}
+                    />
+                </Form.Label>
+                </>}
                 <br/>
                 <Form.Label>
                     <h4>Введите массу в граммах</h4>

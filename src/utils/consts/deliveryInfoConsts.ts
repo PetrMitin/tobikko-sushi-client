@@ -1,6 +1,7 @@
 import { IDeliveryRegion } from "../interfaces/UIInterfaces"
 
 export const deliveryRegions: IDeliveryRegion[] = [
+    {name: ' Жуковский от 500 р.', price: '50 р.'},
     {name: 'Раменское от 2000р.', price: '150-250 р. (В зависимости от удаленности)'},
     {name: 'Дергаево от 2000р.', price: '250 р.'},
     {name: 'Новое Село от 1000р.', price: '300 р.'},
@@ -35,7 +36,6 @@ export const deliveryRegions: IDeliveryRegion[] = [
     {name: 'Загорного от 2000р.', price: '350 р.'},
     {name: 'Томилино Парк от 2000р.', price: '500 р.'},
     {name: 'Котельники от 5000р.', price: '650 р.'},
-    {name: 'Жуковский от 500 р.', price: '50 р.'},
     {name: 'Ильинский ж/с от 500 р.', price: '50 р.'},
     {name: 'Кратово ж/с от 1500р.', price: '50 р.'}
 ].sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))

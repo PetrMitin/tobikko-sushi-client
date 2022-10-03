@@ -8,6 +8,7 @@ export interface IMenuItemData {
     name?: string,
     price?: number,
     halfportionprice?: number | null,
+    halfportionmass?: number,
     massInGramms?: number,
     image?: File,
     menuItemTypesId?: number[],

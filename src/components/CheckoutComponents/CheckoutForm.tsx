@@ -14,6 +14,7 @@ import { ICurrentBasketItem } from "../../utils/interfaces/dbInterfaces";
 import DeliveryRegionsList from "../DeliveryInfoComponents/DeliveryRegionsList";
 import { CLIENT_URL } from "../../utils/consts/urlConsts";
 import { PERSONAL_DATA_AGREEMENT_ROUTE } from "../../utils/consts/routeConsts";
+import AddressInput from "./AddressInput";
 
 const CheckoutForm: FC = () => {
     const dispatch = useAppDispatch()
@@ -76,10 +77,6 @@ const CheckoutForm: FC = () => {
         setPaymentMethod(e.target.value)
     } 
 
-    const handleAddressChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        setCurrentAddress(e.target.value)
-    }
-
     const handleCommentChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setComment(e.target.value)
     }
@@ -134,13 +131,7 @@ const CheckoutForm: FC = () => {
                         setDeliveryRegion={setDeliveryRegion} />
                 </Form.Label>
                 <br/>
-                <Form.Label>
-                    <h4>АДРЕС ДОСТАВКИ</h4>
-                    <Form.Control 
-                        type='text' 
-                        onChange={handleAddressChange}
-                        className={errors.find(elem => elem === EMPTY_ADDRESS_ERROR) ? 'invalid-number' : ''} />
-                </Form.Label>
+                <AddressInput setCurrentAddress={setCurrentAddress} errors={errors} />
                 <br/>
                 <Form.Label>
                     <h4>СПОСОБ ОПЛАТЫ</h4>
