@@ -1,4 +1,5 @@
 import axios from "axios"
+import DoubleLinkedList from "../utils/classes/DoubleLinkedList"
 import { DADATA_API_TOKEN } from "../utils/consts/apiConsts"
 import { ADDRESS_API_URL, API_URL } from "../utils/consts/urlConsts"
 import { IDaDataSuggestion, IDaDataSuggestionResponse, IDiscount } from "../utils/interfaces/apiInterfaces"
@@ -27,7 +28,7 @@ class UserApiActions {
         const res = await fetch(`${this.baseApiUrl}/items/`)
         if (!res.ok) throw new Error('Could not fetch items')
         const jsonRes = await res.json()
-        return jsonRes
+        return DoubleLinkedList.sortToArray<IMenuItem>(jsonRes)
     }
 
     getMenuItemTypes = async (): Promise<IMenuItemType[]> => {

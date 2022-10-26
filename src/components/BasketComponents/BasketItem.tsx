@@ -8,7 +8,7 @@ import { UserActionCreators } from '../../store/action-creators/userActionCreato
 import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
 
 const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispatch<React.SetStateAction<number>>}> = ({menuItem, amount, setTotalPrice}) => {
-    // console.log(menuItem);
+    console.log(menuItem);
     const dispatch = useAppDispatch()
     const firstRender = useRef(true)
     const currentBasketItems = useAppSelector(state => state.user?.currentBasketItems) || []

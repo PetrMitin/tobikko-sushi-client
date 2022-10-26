@@ -72,6 +72,13 @@
     border-bottom-left-radius: 30%;
 }
 
+.no-discount-price {
+    text-align: left;
+    width: 100%;
+    text-decoration: line-through;
+    font-size: large;
+}
+
 @media (max-width: 1400px) {
     .menu-item {
         flex: 0 0 47%;

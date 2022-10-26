@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts";
 import { ICurrentBasketItem, IMenuItem } from "../../utils/interfaces/dbInterfaces";
 import BasketItem from "../BasketComponents/BasketItem";
 
@@ -10,6 +11,7 @@ const CheckoutBasketItemsList: FC<{deliveryPrice: number}> = ({deliveryPrice}) =
     const menuItems = useAppSelector(state => state.user?.menuItems || [])    
     // console.log(currentBasketItems);
     const [totalPrice, setTotalPrice] = useState(0) 
+    const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
 
     const countTotalPrice = (currentBasketItems: ICurrentBasketItem[]) => {
         let cTotalPrice = 0
@@ -18,16 +20,18 @@ const CheckoutBasketItemsList: FC<{deliveryPrice: number}> = ({deliveryPrice}) =
             if (!currentMenuItem.price) {
                 currentMenuItem.price = 0
             }
-            cTotalPrice += (basketItem.isHalfPortion && currentMenuItem.halfportionprice) 
-                            ? currentMenuItem.halfportionprice * basketItem.amount
-                            : currentMenuItem.price * basketItem.amount
+            const mult = isDate20DiscountActive ? 0.8 : 1
+            cTotalPrice += ((basketItem.isHalfPortion && currentMenuItem.halfportionprice) 
+                            ? Math.ceil(currentMenuItem.halfportionprice * mult) * basketItem.amount
+                            : Math.ceil(currentMenuItem.price * mult) * basketItem.amount)
         })
+        cTotalPrice += deliveryPrice
         return cTotalPrice
     }
 
     useEffect(() => {
         setTotalPrice(countTotalPrice(currentBasketItems))
-    }, [currentBasketItems, menuItems])
+    }, [currentBasketItems, menuItems, deliveryPrice])
 
 
     if (!menuItems?.length) return <div className="basket-items-list"></div>
@@ -37,7 +41,7 @@ const CheckoutBasketItemsList: FC<{deliveryPrice: number}> = ({deliveryPrice}) =
             {totalPrice === 0 
             ? <h2 className='empty-basket-heading'>Ваш заказ пуст!</h2>
             : currentBasketItems
-                .filter((basketItem, index, self) => basketItem.amount > 0 && self.indexOf(basketItem) === index)
+                .filter((basketItem, index, self) => basketItem.amount > 0 && self.indexOf(basketItem) === index && !!menuItems.find(menuItem => menuItem.id === basketItem.menuItemId))
                 .map(basketItem => {
                     const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
                     return <BasketItem key={currentMenuItem.id} setTotalPrice={setTotalPrice} menuItem={currentMenuItem} amount={basketItem.amount} />

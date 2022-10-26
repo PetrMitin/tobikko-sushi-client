@@ -138,6 +138,26 @@ class AdminApiActions {
         return res.data
     }
 
+    incrementMenuItem = async (id: number) => {
+        const res = await axios.put(`${API_URL}/api/items/${id}/increment`, {}, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+        return res.data
+    }
+
+    decrementMenuItem = async (id: number) => {
+        const res = await axios.put(`${API_URL}/api/items/${id}/decrement`, {}, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+        return res.data
+    }
+
     deleteMenuItem = async (id: number) => {
         await axios({
             url: `${API_URL}/api/items/${id}`,

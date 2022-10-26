@@ -6,6 +6,7 @@ import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
 import userApiActions from '../../actions/userActions'
 import { IDeliveryRegion } from "../../utils/interfaces/UIInterfaces"
+import { CLIENT_URL } from "../../utils/consts/urlConsts"
 
 export class UserActionCreators {
     static registrateUser: ActionCreator<
@@ -90,12 +91,12 @@ export class UserActionCreators {
                 dispatch(this.setIsLoadingAction(true))
                 const res = await userApiActions.initializePayment(userId, phone, email, name, address, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment)
                 dispatch({type: ActionsTypes.INITIALIZE_PAYMENT})
-                console.log(res)
                 dispatch(this.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
             } finally {
                 dispatch(this.setIsLoadingAction(false))
+                window.location.assign(`${CLIENT_URL}/successful-checkout`)
             }
         }
     }

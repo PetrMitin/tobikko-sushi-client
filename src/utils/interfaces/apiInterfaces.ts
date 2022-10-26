@@ -11,6 +11,8 @@ export interface IMenuItemData {
     halfportionmass?: number,
     massInGramms?: number,
     image?: File,
+    prev?: number,
+    next?: number, 
     menuItemTypesId?: number[],
     info?: IMenuItemInfoData[]
 }
@@ -33,4 +35,10 @@ export interface IDaDataSuggestion {
 
 export interface IDaDataSuggestionResponse {
     suggestions: IDaDataSuggestion[]
+}
+
+export interface DoubleLinkedListNode {
+    id: number,
+    prev: number,
+    next: number
 }

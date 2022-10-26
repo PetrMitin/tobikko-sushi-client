@@ -5,7 +5,7 @@ import './DiscountBanner.scss'
 const DiscountBanner: FC = () => {
     return (
         <div className="discount-banner-container">
-            <h2>Сегодня 20 число, а это значит, что действует скидка 20% на всё меню!</h2>
+            <h2>Действует скидка 20% на всё меню!</h2>
         </div>
     )
 }

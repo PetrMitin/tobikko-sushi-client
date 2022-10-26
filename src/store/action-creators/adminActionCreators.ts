@@ -147,6 +147,41 @@ export class AdminActionCreators {
         }
     }
 
+    static incrementMenuItem: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.incrementMenuItem(id)
+                console.log(res);
+                dispatch({type: ActionsTypes.INCREMENT_MENU_ITEM})
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static decrementMenuItem: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.decrementMenuItem(id)
+                console.log(res);
+                dispatch({type: ActionsTypes.DECREMENT_MENU_ITEM})
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+
     static deleteMenuItem: ActionCreator<
     ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {

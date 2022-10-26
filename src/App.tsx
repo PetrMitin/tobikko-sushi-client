@@ -2,7 +2,7 @@ import {FC, useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import './App.scss';
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 import { AdminActionCreators } from './store/action-creators/adminActionCreators';
 import { UserActionCreators } from './store/action-creators/userActionCreators';
 import { ICurrentBasketItem } from './utils/interfaces/dbInterfaces';
@@ -21,7 +21,7 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(AdminActionCreators.checkAuthAdmin())
-    if ((new Date).getDate() === 26) {
+    if ((new Date).getDate() >= 20  && (new Date).getDate() <= 26) {
       dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
     }
   }, [])

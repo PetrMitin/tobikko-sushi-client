@@ -90,9 +90,7 @@ const CheckoutForm: FC = () => {
         console.log(email, phone, name, currentAddress, deliveryRegion, comment);
         const currentBasketItems = JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[]
         dispatch(UserActionCreators.initializePayment(userId, phone, email, name, currentAddress, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment))
-        dispatch(UserActionCreators.setCurrentBasketItems([]))
         localStorage.setItem('currentBasketItems', '[]')
-        window.location.assign(`${CLIENT_URL}/successful-checkout`)
     }
 
     return (

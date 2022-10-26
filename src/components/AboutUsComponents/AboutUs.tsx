@@ -7,23 +7,12 @@ const AboutUs: FC = () => {
             <h2>
                 О НАС
             </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-                mollit anim id est laborum.
+            <h4>Приветствую Вас!</h4> 
+            <p>Я, Корнилов Андрей, бренд-шеф и основатель "Вкус Tokyo" и "Turtle's Pizza". Представляю свой новый проект ПАНАЗИАТСКОЙ КУХНИ – «TOBIKKO-SUSHI», где множество новинок, а также ваши любимые роллы и блюда. Хочу поделиться с вами новыми вкусами Азии и не только. Все рецепты и блюда АВТОРСКИЕ, и были созданы мною лично для Вас! Свой путь кулинара я начал в 9 лет, приготовив свою первую пиццу с макаронами ,яблоком и кетчупом))). Когда-то, вдохновленный приключениями ЧЕРЕПАШЕК НИНДЗЯ, я создал бренд "TURTLE'S PIZZA", где огромной популярностью у вас пользуются мои авторские пиццы: "LEONARDO", "MICHELANGELO", "DONATELLO", "RAFAEL".
             </p>
+            <p>C 2010 я работал и развивал японскую кухню, так появился бренд «ВкусTokyo». Я не останавливался на достигнутом! Путешествуя по странам Азии, я искал и открывал для себя новые вкусы. Рецепт для своего супа «Tom Yum» я раздобыл в джунглях Таиланда, объехав немало деревень, чтобы теперь передать вам его вкуc. В приготовлении своих блюд я использую только оригинальные продукты: камчатский краб, икра летучей рыбы, морской гребешок, а для приготовления роллов используется рис только премиум класса, все соусы мы изготавливаем для Вас на собственном производстве. Работаем исключительно из-под ножа, поэтому Вы можете быть уверены в качестве и свежести наших блюд. Колоссальный опыт в моем творчестве-кулинарии,я получил работая под руководством лучших мировых поваров Le Guide Michelin: Ollie Dabbous, Didier Coly, а также с лучшими поварами России: Владимиром Чистяковым, Дмитрием Блиновым, Владимиром Мухиным, Дмитрием Зотовым, Максимом Туцким, Евгением Курдюковым.</p>                                                                                                                                                                       
+                <h4>Я и моя команда ждем Вас на TOBIKKO-SUSHI.RU!</h4>
             <iframe title='yandex-map' src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac5ae0af3439345984185c43f5d5e9fe9c3157a73f8d82c42d27340f3b2368c14&amp;source=constructor"></iframe>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-                mollit anim id est laborum.
-            </p>
         </div>
     )
 }

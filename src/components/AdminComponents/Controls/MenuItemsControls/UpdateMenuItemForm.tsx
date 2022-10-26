@@ -84,6 +84,16 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
         setTypesArray(prev => prev.filter(type => type.id !== typeId))
     }
 
+    const handleIncrementClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+        dispatch(AdminActionCreators.incrementMenuItem(item.id))
+        dispatch(UserActionCreators.getMenuItems())
+    }
+
+    const handleDecrementClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+        dispatch(AdminActionCreators.decrementMenuItem(item.id))
+        dispatch(UserActionCreators.getMenuItems())
+    }
+
     const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
         if (!window.confirm(`Вы уверены, что хотите удалить позицию ${item.name}?`)) return
         dispatch(AdminActionCreators.deleteMenuItem(item.id))
@@ -111,6 +121,8 @@ const UpdateMenuItemForm: FC<{item: IMenuItem}> = ({item}) => {
         <div className="new-menu-item-form">
             <h2>{item.name}</h2>
             <Form>
+                <Button onClick={handleDecrementClick}>Сдвинуть позицию вверх на 1</Button>
+                <Button onClick={handleIncrementClick}>Сдвинуть позицию вниз на 1</Button>
                 <Form.Label>
                     <h4>Введите название</h4>
                     <Form.Control defaultValue={name} type='text' placeholder="Введите название" onChange={handleNameChange} />

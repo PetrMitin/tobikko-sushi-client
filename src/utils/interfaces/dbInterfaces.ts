@@ -6,6 +6,8 @@ export interface IMenuItem {
     halfportionmass: number,
     massInGramms: number,
     image: string,
+    prev: number,
+    next: number, 
     menu_item_types: IMenuItemType[],
     menu_item_infos: IMenuItemInfo[],
     createdAt: string,

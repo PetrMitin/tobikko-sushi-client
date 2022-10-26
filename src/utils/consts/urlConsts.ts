@@ -1,5 +1,5 @@
-export const CLIENT_URL = 'http://tobikko-sushi.ru:4000'
-export const API_URL = 'http://tobikko-sushi.ru:4000'
+export const CLIENT_URL = 'http://tobikko-sushi.ru'
+export const API_URL = 'http://tobikko-sushi.ru'
 export const MAIN_LOGO_NO_TEXT_URL = `${API_URL}/main-logo-no-text.png`
 export const MAIN_LOGO_TEXT_URL = `${API_URL}/main-logo.jpeg`
 export const TURTLES_LOGO_URL = `${API_URL}/turtles-logo.png`

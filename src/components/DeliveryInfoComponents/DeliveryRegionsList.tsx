@@ -20,7 +20,7 @@ const DeliveryRegionsList: FC<{variant?: 'invalid' | 'normal', setDeliveryRegion
                 <option value='default' disabled>Выберите регион доставки</option>
                 {deliveryRegions.map(region => <option key={region.name} value={region.name + ' - ' + region.price}>{region.name}</option>)}
             </select>
-            {currentRegion && <><br/><h4>Стоимость доставки в район {currentRegion}</h4></>}
+            {currentRegion && <><br/><h4>Стоимость доставки в район {currentRegion.replace(' - ', ' составляет ')}</h4></>}
         </div>
     )
 }

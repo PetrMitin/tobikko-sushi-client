@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect, useLayoutEffect, useState} from "react";
 import ContentWithMenu from "../../components/ReusableComponents/ContentWithMenu";
 import Footer from "../../components/ReusableComponents/Footer";
 import MenuItemsList from "../../components/MenuComponents/MenuItemsList";
@@ -8,6 +8,7 @@ import SmallNavbar from "../../components/ReusableComponents/SmallNavbar";
 import { useAppSelector } from "../../store/hooks";
 import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts";
 import DiscountBanner from "../../components/ReusableComponents/DiscountBanner";
+import { IStorageFlag } from "../../utils/interfaces/UIInterfaces";
 
 const Menu: FC = () => {
     const [isPopupShown, setIsPopupShown] = useState<boolean>(true)
@@ -16,9 +17,33 @@ const Menu: FC = () => {
     const [dWidth, setDWidth] = useState(window.innerWidth)
 
     useEffect(() => {
-        setTimeout(() => {
+        window.addEventListener('load', () => {
+            localStorage.setItem('isFirstRender', '1')
+            sessionStorage.setItem('isFirstRender', '1')
+        })
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('isFirstRender', '0')
+            sessionStorage.setItem('isFirstRender', '0')
+        })
+    }, [])
+
+    useEffect(() => {
+        const isFirstLocalRender: IStorageFlag = localStorage.getItem('isFirstRender') as IStorageFlag
+        const isFirstSessionRender: IStorageFlag = sessionStorage.getItem('isFirstRender') as IStorageFlag
+        if (isFirstLocalRender === '1' && isFirstSessionRender === '1') { // actually not first render
             setIsPopupShown(false)
-        }, 3000)
+        } else if (isFirstLocalRender === '0' && isFirstSessionRender === '0') { // actually not first render
+            setIsPopupShown(false)
+        } else if (isFirstLocalRender === null && isFirstSessionRender === null) { // both flags undefined => first render
+            setTimeout(() => {
+                setIsPopupShown(false)
+            }, 3000)
+        } else { // flags unequal, user closed page and reopened it => first render
+            setTimeout(() => {
+                setIsPopupShown(false)
+            }, 3000)
+        }
     })
 
     const updateDWidth = () => setDWidth(window.innerWidth)

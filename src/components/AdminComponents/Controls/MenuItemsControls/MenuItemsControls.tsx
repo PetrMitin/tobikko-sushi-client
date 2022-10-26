@@ -31,7 +31,7 @@ const MenuItemsControls: FC = () => {
                     marginBottom: '2%'
                 }} />
             {filteredMenuItems.length > 0 
-            ? filteredMenuItems.map(item => <><UpdateMenuItemForm item={item} key={item.id} /><br/></>) 
+            ? filteredMenuItems.map(item => <UpdateMenuItemForm item={item} key={item.id} />) 
             : <h3>Ничего нет!</h3>}
         </div>
     )

@@ -10,6 +10,8 @@ export enum ActionsTypes {
     DELETE_TYPE = 'DELETE_TYPE',
     CREATE_NEW_MENU_ITEM = 'CREATE_NEW_MENU_ITEM',
     UPDATE_MENU_ITEM = 'UPDATE_MENU_ITEM',
+    INCREMENT_MENU_ITEM = 'INCREMENT_MENU_ITEM',
+    DECREMENT_MENU_ITEM = 'DECREMENT_MENU_ITEM',
     DELETE_MENU_ITEM = 'DELETE_MENU_ITEM',
     SET_IS_PAGE_DISABLED = 'SET_IS_PAGE_DISABLED',
     REGISTRATE_USER = 'REGISTRATE_USER',
@@ -53,6 +55,15 @@ interface CreateNewMenuItemAction {
 interface UpdateMenuItemAction {
     type: ActionsTypes.UPDATE_MENU_ITEM
 }
+
+interface IncrementMenuItemAction {
+    type: ActionsTypes.INCREMENT_MENU_ITEM
+}
+
+interface DecrementMenuItemAction {
+    type: ActionsTypes.DECREMENT_MENU_ITEM
+}
+
 
 interface DeleteMenuItemAction {
     type: ActionsTypes.DELETE_MENU_ITEM
@@ -127,6 +138,8 @@ export type action = AuthorizeAdminAction |
                     DeleteTypeAction | 
                     CreateNewMenuItemAction |
                     UpdateMenuItemAction |
+                    IncrementMenuItemAction |
+                    DecrementMenuItemAction |
                     DeleteMenuItemAction |
                     SetIsPageDisabledAction | 
                     RegistrateUserAction | 

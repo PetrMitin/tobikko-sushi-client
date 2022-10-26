@@ -24,3 +24,5 @@ export interface IError {
 }
 
 export type IPopupState = 'popping' | 'showing' | 'hidden'
+
+export type IStorageFlag = '0' | '1' | null

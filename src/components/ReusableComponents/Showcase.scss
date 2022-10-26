@@ -1,8 +1,15 @@
 .carousel-item {
     img {
         max-height: 90vh;
-        width: auto;
         max-width: 100%;
+        width: auto;
         margin: 0 auto;
+    }
+
+    @media screen 
+    and (max-width: 1200px) {
+        img {
+            height: 30vh;
+        }
     }
 }

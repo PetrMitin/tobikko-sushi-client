@@ -6,7 +6,6 @@ import LandingInfoPannel from "../../components/LandingComponents/LandingInfoPan
 import CustomNavbar from "../../components/ReusableComponents/Navbar";
 import Showcase from "../../components/ReusableComponents/Showcase";
 import { useAppSelector } from "../../store/hooks";
-import PopupLogo from "../../components/LandingComponents/PopupLogo";
 import { imgs } from "../../utils/consts/UIConsts";
 import SmallNavbar from "../../components/ReusableComponents/SmallNavbar";
 
@@ -30,9 +29,7 @@ const Landing: FC = () => {
         }
     }, [])
 
-    return isPopupShown 
-            ? <PopupLogo />
-            : (<div id="landing-container">
+    return (<div id="landing-container">
             {isPageDisabled 
             ? <Countdown />
             : <Fragment>
@@ -42,7 +39,7 @@ const Landing: FC = () => {
                 <LandingInfoPannel />
                 <Footer />
             </Fragment>}
-            </div>)
+        </div>)
 }
 
 export default Landing

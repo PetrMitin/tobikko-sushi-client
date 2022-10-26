@@ -39,9 +39,11 @@ const BasketItemsList: FC = () => {
             {totalPrice === 0 
             ? <h2 className='empty-basket-heading'>Ваша корзина пуста!</h2>
             : currentBasketItems
-                .filter(basketItem => basketItem.amount > 0)
+                .filter(basketItem => basketItem.amount > 0 && menuItems.find(menuItem => menuItem.id === basketItem.menuItemId))
                 .map(basketItem => {
-                    const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId) || {} as IMenuItem
+                    console.log(basketItem);
+                    const currentMenuItem = menuItems.find(menuItem => menuItem.id === basketItem.menuItemId)
+                    if (!currentMenuItem) return
                     return <BasketItem key={currentMenuItem.id} setTotalPrice={setTotalPrice} menuItem={currentMenuItem} amount={basketItem.amount} />
                 })}
             {totalPrice > 0 ? <h2>ИТОГО: {totalPrice}&#8381;</h2> : ''}

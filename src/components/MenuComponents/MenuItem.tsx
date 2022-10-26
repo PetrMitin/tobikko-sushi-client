@@ -28,7 +28,12 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const totalPrice = isDate20DiscountActive ? Math.ceil(((noDiscountPrice || 0) * 0.8)) : noDiscountPrice
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
-        setAmountCounter(prevState => prevState + 1)
+        setAmountCounter(prevState => {
+            if (prevState === 0) {
+                return 2
+            }
+            return prevState + 1
+        })
     }
 
     const handleDecrement: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -111,9 +116,11 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
                     </div>
                 </div>
                 }
+                {noDiscountPrice !== totalPrice 
+                && <span className='no-discount-price'>{noDiscountPrice}&#8381;</span>}
                 <div className="basket-item-controls">
                     <div className="item-price">
-                        {totalPrice}&#8381;
+                        <span className='total-price'>{totalPrice}&#8381;</span>
                     </div>
                     <ButtonGroup aria-label="counter-buttons">
                         <Button variant="secondary" onClick={handleDecrement}>-</Button>

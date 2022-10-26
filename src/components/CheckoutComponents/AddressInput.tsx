@@ -12,7 +12,7 @@ const AddressInput: FC<{setCurrentAddress: React.Dispatch<React.SetStateAction<s
     const [isSuggestionHidden, setIsSuggestionHidden] = useState<boolean>(suggestions.length <= 0)
     const [address, setAddress] = useState('')
     
-    const handleAddressChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleAddressChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
         setAddress(e.target.value)
         setIsSuggestionHidden(false)
     }
@@ -35,14 +35,13 @@ const AddressInput: FC<{setCurrentAddress: React.Dispatch<React.SetStateAction<s
     }, [address])
     
     return (
-        <Form.Label>
+        <Form.Label className="address-label">
             <h4>АДРЕС ДОСТАВКИ</h4>
-            <input
-                type='text' 
+            <textarea
                 onChange={handleAddressChange}
                 onBlur={handleInputFocusOut}
                 value={address}
-                className={errors.find(elem => elem === EMPTY_ADDRESS_ERROR) ? 'invalid-number' : ''} />
+                className={errors.find(elem => elem === EMPTY_ADDRESS_ERROR) ? 'address-input invalid-number' : 'address-input'} />
             <div className="address-suggestion" onClick={handleSuggestionClick} hidden={isSuggestionHidden}>
                 {suggestions.length > 0 && suggestions[0].unrestricted_value}
             </div>
