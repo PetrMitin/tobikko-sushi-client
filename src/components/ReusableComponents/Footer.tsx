@@ -44,7 +44,7 @@ const Footer: FC = () => {
                 </div>
                 <div className="footer-col">
                     <Nav.Link href="#footer">МЫ В СОЦ. СЕТЯХ</Nav.Link>
-                    <Nav.Link href="#footer"><Icon28LogoVkColor /></Nav.Link>
+                    <Nav.Link href="https://vk.com/clubturtlespizzatobikkosushi" target={'_new'}><Icon28LogoVkColor /></Nav.Link>
                     <Nav.Link href="#navbar">НАВЕРХ</Nav.Link>
                 </div>
             </div>
@@ -71,7 +71,7 @@ const Footer: FC = () => {
                             alt='Cash' className='payment-method-img' />
                         </Nav.Link>
                     <Nav.Link href="#footer">МЫ В СОЦ. СЕТЯХ</Nav.Link>
-                    <Nav.Link href="#footer"><Icon28LogoVkColor /></Nav.Link>
+                    <Nav.Link href="https://vk.com/clubturtlespizzatobikkosushi" target={'_new'}><Icon28LogoVkColor /></Nav.Link>
                     <Nav.Link href={PUBLIC_OFFER_ROUTE}>ДОГОВОР ПУБЛИЧНОЙ ОФЕРТЫ</Nav.Link>
                     <Nav.Link href="#navbar">НАВЕРХ</Nav.Link>
                     <Nav.Link href={ADMIN_ROUTE}>АДМИНИСТРАТОРАМ</Nav.Link>

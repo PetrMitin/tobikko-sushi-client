@@ -7,6 +7,7 @@ import { RootState } from "../store"
 import userApiActions from '../../actions/userActions'
 import { IDeliveryRegion } from "../../utils/interfaces/UIInterfaces"
 import { CLIENT_URL } from "../../utils/consts/urlConsts"
+import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts"
 
 export class UserActionCreators {
     static registrateUser: ActionCreator<
@@ -65,6 +66,22 @@ export class UserActionCreators {
                 const suggestions = await userApiActions.getAddressSuggestions(query)
                 window.console.log(suggestions)
                 dispatch(this.setAddressSuggestions(suggestions))
+                dispatch(this.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(this.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static getIs20DiscountActiveAndSet: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = () => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(this.setIsLoadingAction(true))
+                const isActive = await userApiActions.getIs20DiscountActive()
+                if (isActive) dispatch(this.setTotalDiscounts([DATE20_DISCOUNT]))
                 dispatch(this.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))

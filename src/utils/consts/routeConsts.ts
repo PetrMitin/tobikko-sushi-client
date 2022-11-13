@@ -1,6 +1,7 @@
 export const ADMIN_ROUTE = '/admin/*'
 export const ADMIN_TYPES_CONTROLS = '/types'
 export const ADMIN_MENU_ITEMS_CONTROLS = '/menu-items'
+export const ADMIN_DISCOUNT_CONTROLS = '/discount'
 export const ABOUT_RESTAURANT_ROUTE = '/about-restaurant'
 export const ABOUT_US_ROUTE = '/about-us'
 export const BASKET_ROUTE = '/basket'

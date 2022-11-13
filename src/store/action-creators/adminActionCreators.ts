@@ -1,6 +1,7 @@
 import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import adminActions from "../../actions/adminActions"
+import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts"
 import { IMenuItemData } from "../../utils/interfaces/apiInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
@@ -190,6 +191,22 @@ export class AdminActionCreators {
                 const res = await adminActions.deleteMenuItem(id)
                 console.log(res);
                 dispatch({type: ActionsTypes.DELETE_MENU_ITEM})
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static setIs20DiscountActive: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (isActive: boolean) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.setIs20DiscountActive(isActive)
+                if (isActive) dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
                 dispatch(UserActionCreators.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))

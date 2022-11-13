@@ -168,6 +168,22 @@ class AdminApiActions {
             },
         })
     }
+
+    setIs20DiscountActive = async(isActive: boolean): Promise<unknown> => {
+        const res = await fetch(`${this.baseApiUrl}/discount/set-is-active`, {
+            method: 'POST',
+            body: JSON.stringify({
+                isActive
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not registrate user')
+        const jsonRes = await res.json()
+        return jsonRes
+    }
 }
 
 export default new AdminApiActions()

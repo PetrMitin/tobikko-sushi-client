@@ -21,7 +21,12 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(AdminActionCreators.checkAuthAdmin())
-    if ((new Date).getDate() >= 20  && (new Date).getDate() <= 26) {
+  }, [])
+
+  useEffect(() => {
+    dispatch(UserActionCreators.getIs20DiscountActiveAndSet())
+    const is20Date = (new Date).getDate() === 20
+    if (is20Date) {
       dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
     }
   }, [])
