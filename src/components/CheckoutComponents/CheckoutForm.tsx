@@ -23,6 +23,7 @@ const CheckoutForm: FC = () => {
     const [phone, setPhone] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [numberOfPeople, setNumberOfPeople] = useState(1)
     const [currentAddress, setCurrentAddress] = useState('')
     const [deliveryRegion, setDeliveryRegion] = useState<IDeliveryRegion | null>(null)
     const [paymentMethod, setPaymentMethod] = useState('courier')
@@ -73,6 +74,8 @@ const CheckoutForm: FC = () => {
 
     const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => setEmail(e.target.value)
 
+    const handleNumberOfPeopleChange: ChangeEventHandler<HTMLInputElement> = (e) => setNumberOfPeople(parseInt(e.target.value) || NaN)
+
     const handlePaymentMethodChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setPaymentMethod(e.target.value)
     } 
@@ -89,7 +92,7 @@ const CheckoutForm: FC = () => {
         e.preventDefault()
         console.log(email, phone, name, currentAddress, deliveryRegion, comment);
         const currentBasketItems = JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[]
-        dispatch(UserActionCreators.initializePayment(userId, phone, email, name, currentAddress, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment))
+        dispatch(UserActionCreators.initializePayment(userId, phone, email, name, numberOfPeople, currentAddress, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment))
         localStorage.setItem('currentBasketItems', '[]')
     }
 
@@ -120,6 +123,15 @@ const CheckoutForm: FC = () => {
                         type='email' 
                         onChange={handleEmailChange}
                         className={errors.find(elem => elem === INVALID_EMAIL_ERROR) ? 'invalid-number' : ''} />
+                </Form.Label>
+                <br/>
+                <Form.Label>
+                    <h4>КОЛИЧЕСТВО ПЕРСОН</h4>
+                    <Form.Control 
+                        type='number' 
+                        onChange={handleNumberOfPeopleChange}
+                        value={numberOfPeople}
+                        onBlur={(e) => {setNumberOfPeople(numberOfPeople ? numberOfPeople : 1)}} />
                 </Form.Label>
                 <br/>
                 <Form.Label className="delivery-regions-label">

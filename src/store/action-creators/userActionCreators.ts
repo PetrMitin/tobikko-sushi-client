@@ -97,6 +97,7 @@ export class UserActionCreators {
         phone: string, 
         email: string, 
         name: string, 
+        numberOfPeople: number,
         address: string, 
         deliveryRegion: IDeliveryRegion,
         paymentMethod: 'courier' | 'online',
@@ -106,7 +107,7 @@ export class UserActionCreators {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
             try {
                 dispatch(this.setIsLoadingAction(true))
-                const res = await userApiActions.initializePayment(userId, phone, email, name, address, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment)
+                const res = await userApiActions.initializePayment(userId, phone, email, name, numberOfPeople, address, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment)
                 dispatch({type: ActionsTypes.INITIALIZE_PAYMENT})
                 dispatch(this.setErrorAction(null))
             } catch(e: any) {

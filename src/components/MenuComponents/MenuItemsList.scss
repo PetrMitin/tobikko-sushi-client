@@ -19,6 +19,17 @@
     }
 }
 
+.pizza-discount-container {
+    h4 {
+        font-size: x-large;
+        color: orangered;
+    }
+
+    p {
+        font-size: smaller !important;
+    }
+}
+
 @media (max-width: 1040px) {
     .menu-items-list-container {
         width: 100%;

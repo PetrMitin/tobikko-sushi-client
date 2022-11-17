@@ -43,6 +43,12 @@ const MenuItemsList: FC = () => {
 
     return (
         <div className='menu-items-list-container'>
+            { /* && (Date.now() <= (new Date(2022, 11, 18, 23, 50)).valueOf()))  */
+            (Date.now() >= (new Date('2022-11-14T00:00:00')).valueOf() && Date.now() <= (new Date('2022-11-19T00:00:00')).valueOf()) 
+            && <div className='pizza-discount-container'>
+                    <h4>Закажи на 3000₽ и получи любую любимую пиццу 30 см в подарок*</h4>
+                    <p>*В акции не участвует пицца Chicago Red</p>
+                </div>}
             {menuItemTypesFilter && <h2>{selectedMenuType.name.toUpperCase()}</h2>}
             <h3>Искать позиции</h3>
             <input type='text' onChange={handleMenuItemFilterChange} placeholder='Искать по позициям...' />
