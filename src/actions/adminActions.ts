@@ -1,8 +1,7 @@
 import axios from "axios"
 import $admin_api from "../http/axios"
 import { API_URL } from "../utils/consts/urlConsts"
-import { IMenuItemData } from "../utils/interfaces/apiInterfaces"
-import { IMenuItemType, IMenuItemInfo } from "../utils/interfaces/dbInterfaces"
+import { IMenuItemData, IPromotion } from "../utils/interfaces/apiInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
 axios.defaults.withCredentials = true
@@ -180,9 +179,27 @@ class AdminApiActions {
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        if (!res.ok) throw new Error('Could not registrate user')
+        if (!res.ok) throw new Error('Could not set is discount active')
         const jsonRes = await res.json()
         return jsonRes
+    }
+
+    setActivePromotion = async(promotion: IPromotion): Promise<boolean> => {
+        const res = await fetch(`${this.baseApiUrl}/discount/active-promotion`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ...promotion, 
+                startDate: promotion.startDate.toDateString(), 
+                endDate: promotion.endDate.toDateString()
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not set promo')
+        const jsonRes = await res.json()
+        return true
     }
 }
 

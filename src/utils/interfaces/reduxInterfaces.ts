@@ -1,4 +1,4 @@
-import { IDaDataSuggestion, IDiscount, IServerError } from "./apiInterfaces"
+import { IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "./apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "./dbInterfaces"
 
 export interface IUserState {
@@ -9,6 +9,7 @@ export interface IUserState {
     menuItemTypesFilter: null | number,
     menuItemTypes: IMenuItemType[],
     totalDiscounts: IDiscount[],
+    activePromotion: IPromotion | null,
     addressSuggestions: IDaDataSuggestion[],
     isLoading: boolean,
     error: IServerError | null

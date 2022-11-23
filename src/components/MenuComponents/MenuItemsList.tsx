@@ -12,10 +12,15 @@ const MenuItemsList: FC = () => {
         dispatch(UserActionCreators.getMenuItems())
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(UserActionCreators.getActivePromotion())
+    }, [dispatch])
+
     const menuItems = useAppSelector(state => state.user?.menuItems) || []
     const [menuItemsFilter, setMenuItemsFilter] = useState('')
     const [filteredMenuItems, setFilteredMenuItems] = useState<IMenuItem[]>(menuItems)
     const menuItemTypes = useAppSelector(state => state.user?.menuItemTypes) || []
+    const activePromotion = useAppSelector(state => state.user?.activePromotion) || undefined
     const menuItemTypesFilter = useAppSelector(state => state.user?.menuItemTypesFilter)
     const selectedMenuType = menuItemTypes.find((type) => type.id === menuItemTypesFilter) || {} as IMenuItemType
 
@@ -43,11 +48,10 @@ const MenuItemsList: FC = () => {
 
     return (
         <div className='menu-items-list-container'>
-            { /* && (Date.now() <= (new Date(2022, 11, 18, 23, 50)).valueOf()))  */
-            (Date.now() >= (new Date('2022-11-14T00:00:00')).valueOf() && Date.now() <= (new Date('2022-11-19T00:00:00')).valueOf()) 
+            {(activePromotion && Date.now() >= (new Date(activePromotion.startDate)).valueOf() && Date.now() <= (new Date(activePromotion.endDate)).valueOf()) 
             && <div className='pizza-discount-container'>
-                    <h4>Закажи на 3000₽ и получи любую любимую пиццу 30 см в подарок*</h4>
-                    <p>*В акции не участвует пицца Chicago Red</p>
+                    <h4>{activePromotion.primaryText}</h4>
+                    <p>{activePromotion.secondaryText}</p>
                 </div>}
             {menuItemTypesFilter && <h2>{selectedMenuType.name.toUpperCase()}</h2>}
             <h3>Искать позиции</h3>

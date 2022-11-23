@@ -2,7 +2,7 @@ import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import adminActions from "../../actions/adminActions"
 import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts"
-import { IMenuItemData } from "../../utils/interfaces/apiInterfaces"
+import { IMenuItemData, IPromotion } from "../../utils/interfaces/apiInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
 import { UserActionCreators } from "./userActionCreators"
@@ -207,6 +207,22 @@ export class AdminActionCreators {
                 dispatch(UserActionCreators.setIsLoadingAction(true))
                 const res = await adminActions.setIs20DiscountActive(isActive)
                 if (isActive) dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static setActivePromotion: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (promotion: IPromotion) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.setActivePromotion(promotion)
+                if (res) dispatch(UserActionCreators.setActivePromotion(promotion as IPromotion))
                 dispatch(UserActionCreators.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))

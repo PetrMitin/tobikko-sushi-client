@@ -2,7 +2,7 @@ import axios from "axios"
 import DoubleLinkedList from "../utils/classes/DoubleLinkedList"
 import { DADATA_API_TOKEN } from "../utils/consts/apiConsts"
 import { ADDRESS_API_URL, API_URL } from "../utils/consts/urlConsts"
-import { IDaDataSuggestion, IDaDataSuggestionResponse, IDiscount } from "../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestion, IDaDataSuggestionResponse, IDiscount, IPromotion } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, IMenuItem, IMenuItemType, ICurrentBasketItem } from "../utils/interfaces/dbInterfaces"
 import { IDeliveryRegion } from "../utils/interfaces/UIInterfaces"
 
@@ -55,6 +55,17 @@ class UserApiActions {
         if (!res.ok) throw new Error('Could not fetch discounts')
         const jsonRes: {isActive: boolean} = await res.json()
         return jsonRes.isActive
+    }
+
+    getActivePromotion = async(): Promise<IPromotion> => {
+        const res = await fetch(`${this.baseApiUrl}/discount/active-promotion`)
+        if (!res.ok) throw new Error('Could not fetch promo')
+        const jsonRes: {activePromotion: {startDate: string, endDate: string, primaryText: string, secondaryText: string}} = await res.json()
+        return {
+            ...jsonRes.activePromotion, 
+            startDate: new Date(Date.parse(jsonRes.activePromotion.startDate)), 
+            endDate: new Date(Date.parse(jsonRes.activePromotion.endDate))
+        }
     }
 
     initializePayment = async (userId: number, 

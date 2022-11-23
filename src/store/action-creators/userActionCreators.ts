@@ -1,6 +1,6 @@
 import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { IDaDataSuggestion, IDiscount, IServerError } from "../../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "../../utils/interfaces/apiInterfaces"
 import { ICurrentBasketItem } from "../../utils/interfaces/dbInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
@@ -91,6 +91,22 @@ export class UserActionCreators {
         }
     }
 
+    static getActivePromotion: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = () => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(this.setIsLoadingAction(true))
+                const promotion = await userApiActions.getActivePromotion()
+                if (promotion) dispatch(this.setActivePromotion(promotion as IPromotion))
+                dispatch(this.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(this.setIsLoadingAction(false))
+            }
+        }
+    }
+
     static initializePayment: ActionCreator<
     ThunkAction<Promise<void>, RootState, void, action>> = (
         userId: number, 
@@ -136,6 +152,13 @@ export class UserActionCreators {
         return {
             type: ActionsTypes.SET_TOTAL_DISCOUNTS,
             payload: totalDiscounts
+        }
+    }
+
+    static setActivePromotion = (promotion: IPromotion): action => {
+        return {
+            type: ActionsTypes.SET_ACTIVE_PROMOTION,
+            payload: promotion
         }
     }
 

@@ -9,7 +9,7 @@ const AdminNavbar: FC = () => {
         <div className="admin-navbar">
             <Button href={`${CLIENT_URL}/admin${ADMIN_TYPES_CONTROLS}`}>Разделы меню</Button>
             <Button href={`${CLIENT_URL}/admin${ADMIN_MENU_ITEMS_CONTROLS}`}>Позиции меню</Button>
-            <Button href={`${CLIENT_URL}/admin${ADMIN_DISCOUNT_CONTROLS}`}>Скидки</Button>
+            <Button href={`${CLIENT_URL}/admin${ADMIN_DISCOUNT_CONTROLS}`}>Скидки и акции</Button>
         </div>
     )
 }

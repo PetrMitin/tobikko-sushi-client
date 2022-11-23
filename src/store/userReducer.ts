@@ -10,6 +10,7 @@ const initialState: IUserState = {
     menuItemTypesFilter: null,
     menuItemTypes: [],
     totalDiscounts: [],
+    activePromotion: null,
     addressSuggestions: [],
     isLoading: false,
     error: null
@@ -23,6 +24,10 @@ const userReducer: Reducer<IUserState | undefined, action | {type: ''}> = (state
             return {...state, currentBasketItems: action.payload}
         case ActionsTypes.SET_TOTAL_DISCOUNTS:
             return {...state, totalDiscounts: action.payload}
+        case ActionsTypes.GET_ACTIVE_PROMOTION:
+            return {...state, activePromotion: action.payload}
+        case ActionsTypes.SET_ACTIVE_PROMOTION:
+            return {...state, activePromotion: action.payload}
         case ActionsTypes.GET_MENU_ITEMS:
             return {...state, menuItems: action.payload}
         case ActionsTypes.GET_MENU_ITEM_TYPES:

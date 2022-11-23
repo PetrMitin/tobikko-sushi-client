@@ -1,4 +1,4 @@
-import { IDaDataSuggestion, IDiscount, IServerError } from "../utils/interfaces/apiInterfaces"
+import { IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
@@ -17,6 +17,8 @@ export enum ActionsTypes {
     REGISTRATE_USER = 'REGISTRATE_USER',
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
     SET_TOTAL_DISCOUNTS = 'SET_TOTAL_DISCOUNTS',
+    GET_ACTIVE_PROMOTION = 'GET_ACTIVE_PROMOTION',
+    SET_ACTIVE_PROMOTION = 'SET_ACTIVE_PROMOTION',
     GET_MENU_ITEMS = 'GET_MENU_ITEMS',
     GET_MENU_ITEM_TYPES = 'GET_MENU_ITEM_TYPES',
     GET_ADDRESS_SUGGESTIONS = 'GET_ADDRESS_SUGGESTIONS',
@@ -92,6 +94,16 @@ interface SetTotalDiscounts {
     payload: IDiscount[]
 }
 
+interface GetActivePromotion {
+    type: ActionsTypes.GET_ACTIVE_PROMOTION,
+    payload: IPromotion
+}
+
+interface SetActivePromotion {
+    type: ActionsTypes.SET_ACTIVE_PROMOTION,
+    payload: IPromotion
+}
+
 interface GetMenuItemsAction {
     type: ActionsTypes.GET_MENU_ITEMS,
     payload: IMenuItem[]
@@ -145,6 +157,8 @@ export type action = AuthorizeAdminAction |
                     RegistrateUserAction | 
                     SetCurrentBasketItemsAction | 
                     SetTotalDiscounts |
+                    GetActivePromotion |
+                    SetActivePromotion |
                     GetMenuItemsAction | 
                     GetMenuItemTypesAction | 
                     GetAddressSuggestions |

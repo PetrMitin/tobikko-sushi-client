@@ -28,6 +28,13 @@ export interface IDiscount {
     menuItemIds?: number[]
 }
 
+export interface IPromotion {
+    startDate: Date,
+    endDate: Date,
+    primaryText: string,
+    secondaryText: string
+}
+
 export interface IDaDataSuggestion {
     value: string,
     unrestricted_value: string
