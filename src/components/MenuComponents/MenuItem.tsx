@@ -9,6 +9,7 @@ import { UserActionCreators } from '../../store/action-creators/userActionCreato
 import { BASKET_ROUTE } from '../../utils/consts/routeConsts'
 import ItemAddedMessage from '../ReusableComponents/ItemAddedMessage'
 import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
+import { useTotalDiscountMuliplier, useTotalPercentDiscount } from '../../hooks/hooks'
 
 const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const dispatch = useAppDispatch()
@@ -24,8 +25,9 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
     const [isPopupShown, setIsPopupShown] = useState(false)
     const isSoup = menuItem.menu_item_types.filter(({name}) => name.toLowerCase().includes('суп')).length > 0
     const noDiscountPrice = isHalfPortion ? menuItem.halfportionprice : menuItem.price
-    const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
-    const totalPrice = isDate20DiscountActive ? Math.ceil(((noDiscountPrice || 0) * 0.8)) : noDiscountPrice
+    const totalMultiplier = useTotalDiscountMuliplier()
+    const discountInPercent = useTotalPercentDiscount()
+    const totalPrice = totalMultiplier < 1 ? Math.ceil(((noDiscountPrice || 0) * totalMultiplier)) : noDiscountPrice
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => {
@@ -85,7 +87,7 @@ const MenuItem: FC<{menuItem: IMenuItem}> = ({menuItem}) => {
 
     return (
         <Card className='menu-item bg-dark'>
-            {isDate20DiscountActive && <div className='discount-label'>-20%</div>}
+            {totalMultiplier < 1 && <div className='discount-label'>{discountInPercent}</div>}
             <Card.Img variant="top" src={`${baseApiUrl}/${menuItem.image}`} />
             <hr/>
             <Card.Body>

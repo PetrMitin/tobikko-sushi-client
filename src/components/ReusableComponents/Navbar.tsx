@@ -80,7 +80,7 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
             </React.Fragment>)}
                 {isPhoneDisplayed && <div className="phone-text"><Navbar.Text>
                     <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
-                    Часы работы: 11:00-23:45<br/>
+                    Часы работы: 11:00-22:45<br/>
                     Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text></div>}
                     
@@ -95,7 +95,7 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                     </div>
                     {!isPhoneDisplayed && <div className="phone-text phone-text-downside"><Navbar.Text>
                     <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
-                    Часы работы: 11:00-23:45<br/>
+                    Часы работы: 11:00-22:45<br/>
                     Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text></div>}
             </Navbar>
@@ -121,7 +121,7 @@ const CustomNavbar: FC<{whatIsActive?: 'menu' | 'about-restaurant' | 'delivery-i
                 </Nav>
                 <Navbar.Text>
                 <a href='tel:+79169350505'>+7 (916) 935-05-05</a><br/>
-                    Часы работы: 11:00-23:45<br/>
+                    Часы работы: 11:00-22:45<br/>
                     Жуковский, ул. Гудкова, д. 20
                 </Navbar.Text>
                 <Nav.Link href="/basket" className={`${whatIsActive === 'basket' ? 'active' : ''} basket-link`}>

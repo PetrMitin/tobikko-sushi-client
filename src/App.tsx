@@ -2,11 +2,10 @@ import {FC, useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import './App.scss';
-import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useAppDispatch } from './store/hooks';
 import { AdminActionCreators } from './store/action-creators/adminActionCreators';
 import { UserActionCreators } from './store/action-creators/userActionCreators';
 import { ICurrentBasketItem } from './utils/interfaces/dbInterfaces';
-import { DATE20_DISCOUNT } from './utils/consts/apiConsts';
 
 
 
@@ -24,11 +23,7 @@ const App: FC = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(UserActionCreators.getIs20DiscountActiveAndSet())
-    const is20Date = (new Date).getDate() === 20
-    if (is20Date) {
-      dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
-    }
+    dispatch(UserActionCreators.getActiveDiscountAndSet())
   }, [])
 
   return (

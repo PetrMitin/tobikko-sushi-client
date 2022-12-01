@@ -9,11 +9,12 @@ import { useAppSelector } from "../../store/hooks";
 import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts";
 import DiscountBanner from "../../components/ReusableComponents/DiscountBanner";
 import { IStorageFlag } from "../../utils/interfaces/UIInterfaces";
+import { useTotalDiscountMuliplier } from "../../hooks/hooks";
 
 const Menu: FC = () => {
     const [isPopupShown, setIsPopupShown] = useState<boolean>(true)
     const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled) 
-    const totalDiscounts = useAppSelector(state => state.user?.totalDiscounts) || []
+    const totalMultiplier = useTotalDiscountMuliplier()
     const [dWidth, setDWidth] = useState(window.innerWidth)
 
     useEffect(() => {
@@ -63,7 +64,7 @@ const Menu: FC = () => {
             ? <PopupLogo /> 
             : <div id="menu-container">
                 <CustomNavbar whatIsActive="menu" />
-                {totalDiscounts.includes(DATE20_DISCOUNT) && <DiscountBanner />}
+                {totalMultiplier < 1 && <DiscountBanner />}
                 {dWidth <= 470 && <SmallNavbar variant="menu" />}
                 <ContentWithMenu Component={MenuItemsList} />
                 <Footer />

@@ -1,7 +1,7 @@
 import axios from "axios"
 import $admin_api from "../http/axios"
 import { API_URL } from "../utils/consts/urlConsts"
-import { IMenuItemData, IPromotion } from "../utils/interfaces/apiInterfaces"
+import { IDiscount, IMenuItemData, IPromotion } from "../utils/interfaces/apiInterfaces"
 import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
 axios.defaults.withCredentials = true
@@ -168,18 +168,18 @@ class AdminApiActions {
         })
     }
 
-    setIs20DiscountActive = async(isActive: boolean): Promise<unknown> => {
-        const res = await fetch(`${this.baseApiUrl}/discount/set-is-active`, {
+    setActiveDiscount = async(discount: IDiscount): Promise<IDiscount> => {
+        const res = await fetch(`${this.baseApiUrl}/discount/set-active-discount`, {
             method: 'POST',
             body: JSON.stringify({
-                isActive
+                ...discount
             }),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        if (!res.ok) throw new Error('Could not set is discount active')
+        if (!res.ok) throw new Error('Could not set active discount')
         const jsonRes = await res.json()
         return jsonRes
     }

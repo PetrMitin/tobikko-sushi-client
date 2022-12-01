@@ -2,7 +2,7 @@ import { ActionCreator } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import adminActions from "../../actions/adminActions"
 import { DATE20_DISCOUNT } from "../../utils/consts/apiConsts"
-import { IMenuItemData, IPromotion } from "../../utils/interfaces/apiInterfaces"
+import { IDiscount, IMenuItemData, IPromotion } from "../../utils/interfaces/apiInterfaces"
 import { action, ActionsTypes } from "../actions"
 import { RootState } from "../store"
 import { UserActionCreators } from "./userActionCreators"
@@ -200,13 +200,13 @@ export class AdminActionCreators {
         }
     }
 
-    static setIs20DiscountActive: ActionCreator<
-    ThunkAction<Promise<void>, RootState, void, action>> = (isActive: boolean) => {
+    static setActiveDiscount: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (discount: IDiscount) => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
             try {
                 dispatch(UserActionCreators.setIsLoadingAction(true))
-                const res = await adminActions.setIs20DiscountActive(isActive)
-                if (isActive) dispatch(UserActionCreators.setTotalDiscounts([DATE20_DISCOUNT]))
+                const res = await adminActions.setActiveDiscount(discount)
+                if (res) dispatch(UserActionCreators.setTotalDiscounts([res]))
                 dispatch(UserActionCreators.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))

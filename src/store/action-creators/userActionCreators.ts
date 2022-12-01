@@ -75,13 +75,13 @@ export class UserActionCreators {
         }
     }
 
-    static getIs20DiscountActiveAndSet: ActionCreator<
+    static getActiveDiscountAndSet: ActionCreator<
     ThunkAction<Promise<void>, RootState, void, action>> = () => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
             try {
                 dispatch(this.setIsLoadingAction(true))
-                const isActive = await userApiActions.getIs20DiscountActive()
-                if (isActive) dispatch(this.setTotalDiscounts([DATE20_DISCOUNT]))
+                const res = await userApiActions.getActiveDiscount()
+                if (res) dispatch(this.setTotalDiscounts([res]))
                 dispatch(this.setErrorAction(null))
             } catch(e: any) {
                 if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
@@ -149,6 +149,7 @@ export class UserActionCreators {
     }
 
     static setTotalDiscounts = (totalDiscounts: IDiscount[]): action => {
+        if ((new Date).getDate() === 20) totalDiscounts.push(DATE20_DISCOUNT)
         return {
             type: ActionsTypes.SET_TOTAL_DISCOUNTS,
             payload: totalDiscounts

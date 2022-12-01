@@ -6,6 +6,7 @@ import { IMenuItem, ICurrentBasketItem } from '../../utils/interfaces/dbInterfac
 import { API_URL } from '../../utils/consts/urlConsts'
 import { UserActionCreators } from '../../store/action-creators/userActionCreators'
 import { DATE20_DISCOUNT } from '../../utils/consts/apiConsts'
+import { useTotalDiscountMuliplier } from '../../hooks/hooks'
 
 const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispatch<React.SetStateAction<number>>}> = ({menuItem, amount, setTotalPrice}) => {
     console.log(menuItem);
@@ -17,17 +18,17 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
     const currentBasketItem = currentBasketItems.find(item => item.menuItemId === menuItem.id)
     const [amountCounter, setAmountCounter] = useState(amount || currentBasketItem?.amount || 0)
     const noDiscountPrice = currentBasketItem?.isHalfPortion ? menuItem.halfportionprice : menuItem.price
-    const isDate20DiscountActive = (useAppSelector(state => state.user?.totalDiscounts) || []).includes(DATE20_DISCOUNT)
-    const totalPrice = isDate20DiscountActive ? Math.ceil(((noDiscountPrice || 0) * 0.8)) : (noDiscountPrice || 0)
+    const totalMultiplier = useTotalDiscountMuliplier()
+    const totalPrice = totalMultiplier < 1 ? Math.ceil(((noDiscountPrice || 0) * totalMultiplier)) : (noDiscountPrice || 0)
 
     const handleIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
         setAmountCounter(prevState => prevState + 1)
-        setTotalPrice(prev => prev + menuItem.price)
+        setTotalPrice(prev => prev + totalPrice)
     }
 
     const handleDecrement: MouseEventHandler<HTMLButtonElement> = (e) => {
-        setAmountCounter(prevState => prevState <= 0 ? prevState : prevState - 1)
-        setTotalPrice(prev => prev - menuItem.price)
+        setAmountCounter(prevState => prevState <= 0 ? 0 : prevState - 1)
+        setTotalPrice(prev => prev - totalPrice)
     }
 
     const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -36,6 +37,7 @@ const BasketItem: FC<{menuItem: IMenuItem, amount: number, setTotalPrice: Dispat
 
     useEffect(() => {
         const newCurrentBasketItems = currentBasketItems.map(elem => elem.menuItemId === menuItem.id ? {...elem, amount: amountCounter} : elem)
+        console.log(newCurrentBasketItems);
         dispatch(UserActionCreators.setCurrentBasketItems(newCurrentBasketItems))
         if (amountCounter === 0) window.location.reload()
     }, [amountCounter, dispatch])

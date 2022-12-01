@@ -50,11 +50,11 @@ class UserApiActions {
         return res.data.suggestions
     }
 
-    getIs20DiscountActive = async(): Promise<boolean> => {
-        const res = await fetch(`${this.baseApiUrl}/discount/is-active`)
+    getActiveDiscount = async(): Promise<IDiscount> => {
+        const res = await fetch(`${this.baseApiUrl}/discount/get-active-discount`)
         if (!res.ok) throw new Error('Could not fetch discounts')
-        const jsonRes: {isActive: boolean} = await res.json()
-        return jsonRes.isActive
+        const jsonRes: IDiscount = await res.json()
+        return jsonRes
     }
 
     getActivePromotion = async(): Promise<IPromotion> => {

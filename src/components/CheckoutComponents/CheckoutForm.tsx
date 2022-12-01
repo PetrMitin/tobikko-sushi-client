@@ -90,7 +90,6 @@ const CheckoutForm: FC = () => {
 
     const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault()
-        console.log(email, phone, name, currentAddress, deliveryRegion, comment);
         const currentBasketItems = JSON.parse(localStorage.getItem('currentBasketItems') || '[]') as ICurrentBasketItem[]
         dispatch(UserActionCreators.initializePayment(userId, phone, email, name, numberOfPeople, currentAddress, deliveryRegion, paymentMethod, discounts, currentBasketItems, comment))
         localStorage.setItem('currentBasketItems', '[]')

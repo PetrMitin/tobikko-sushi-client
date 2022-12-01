@@ -1,11 +1,13 @@
 import { FC } from "react";
-import { SIGNATURE_URL } from "../../utils/consts/urlConsts";
+import { useTotalDiscountMuliplier, useTotalPercentDiscount } from "../../hooks/hooks";
 import './DiscountBanner.scss'
 
 const DiscountBanner: FC = () => {
+    const multInPercentStr = useTotalPercentDiscount()
+
     return (
         <div className="discount-banner-container">
-            <h2>Действует скидка 20% на всё меню!</h2>
+            <h2>Действует скидка {multInPercentStr} на всё меню!</h2>
         </div>
     )
 }

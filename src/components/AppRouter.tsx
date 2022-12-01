@@ -10,8 +10,6 @@ const AppRouter: FC = () => {
     const dispatch = useAppDispatch()
 
     const isPageDisabled = useAppSelector(state => state.admin?.isPageDisabled)
-    const adminData = useAppSelector(state => state.admin?.adminData)
-    const isAdmin = adminData?.role === 'ADMIN' && adminData?.isConfirmedAdmin && adminData?.isConfirmedEmail
 
     useEffect(() => {
         !isPageDisabled && dispatch(UserActionCreators.registrateUser())
