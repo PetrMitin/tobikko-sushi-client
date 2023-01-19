@@ -10,11 +10,12 @@ import Landing from "./pages/UIPages/Landing"
 import Menu from "./pages/UIPages/Menu"
 import { IRoute } from "./types/routeTypes"
 
-import { ERROR_ROUTE, ADMIN_ROUTE, ABOUT_RESTAURANT_ROUTE, BASKET_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, CHECKOUT_ROUTE, ADMIN_MENU_ITEMS_CONTROLS, ADMIN_TYPES_CONTROLS, SUCCESSFUL_CHECKOUT_ROUTE, PUBLIC_OFFER_ROUTE, ABOUT_US_ROUTE, PERSONAL_DATA_AGREEMENT_ROUTE, ADMIN_DISCOUNT_CONTROLS } from "./utils/consts/routeConsts"
+import { ERROR_ROUTE, ADMIN_ROUTE, ABOUT_RESTAURANT_ROUTE, BASKET_ROUTE, DELIVERY_INFO_ROUTE, MENU_ROUTE, CHECKOUT_ROUTE, ADMIN_MENU_ITEMS_CONTROLS, ADMIN_TYPES_CONTROLS, SUCCESSFUL_CHECKOUT_ROUTE, PUBLIC_OFFER_ROUTE, ABOUT_US_ROUTE, PERSONAL_DATA_AGREEMENT_ROUTE, ADMIN_DISCOUNT_CONTROLS, ADMIN_ABOUT_US_CONTROLS } from "./utils/consts/routeConsts"
 import SuccessfulCheckout from "./pages/UIPages/SuccessfulCheckout"
 import PublicOffer from "./pages/UIPages/PublicOffer"
 import PersonalDataAgreement from "./pages/UIPages/PersonalDataAgreement"
 import DiscountControls from "./components/AdminComponents/Controls/DiscountControls/DiscountControls"
+import AboutUsControls from "./components/AdminComponents/Controls/AboutUsControls/AboutUsControls"
 
 export const landingRoute: IRoute = {
     path: '/about-us',
@@ -38,6 +39,10 @@ export const adminRoutes: IRoute[] = [
     {
         path: ADMIN_DISCOUNT_CONTROLS,
         Component: DiscountControls
+    },
+    {
+        path: ADMIN_ABOUT_US_CONTROLS,
+        Component: AboutUsControls
     }
 ]
 

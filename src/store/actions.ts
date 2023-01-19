@@ -1,6 +1,6 @@
-import { IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "../utils/interfaces/apiInterfaces"
+import { IAboutUsParagraph, IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "../utils/interfaces/dbInterfaces"
-import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
+import { IImage, ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
 export enum ActionsTypes {
     AUTHORIZE_ADMIN = 'AUTHORIZE_ADMIN',
@@ -13,6 +13,15 @@ export enum ActionsTypes {
     INCREMENT_MENU_ITEM = 'INCREMENT_MENU_ITEM',
     DECREMENT_MENU_ITEM = 'DECREMENT_MENU_ITEM',
     DELETE_MENU_ITEM = 'DELETE_MENU_ITEM',
+    GET_PARAGRAPHS = 'GET_PARAGRAPHS',
+    CREATE_NEW_PARAGRAPH = 'CREATE_NEW_PARAGRAPH',
+    UPDATE_PARAGRAPH = 'UPDATE_PARAGRAPH',
+    DELETE_PARAGRAPH = 'DELETE_PARAGRAPH',
+    INCREMENT_PARAGRAPH = 'INCREMENT_PARAGRAPH',
+    DECREMENT_PARAGRAPH = 'DECREMENT_PARAGRAPH',
+    GET_IMAGES = 'GET_IMAGES',
+    ADD_IMAGE = 'ADD_IMAGE',
+    DELETE_IMAGE = 'DELETE_IMAGE',  
     SET_IS_PAGE_DISABLED = 'SET_IS_PAGE_DISABLED',
     REGISTRATE_USER = 'REGISTRATE_USER',
     SET_CURRENT_BASKET_ITEMS = 'SET_CURRENT_BASKET_ITEMS',
@@ -143,6 +152,44 @@ interface SetIsLoadingAction {
     payload: boolean
 }
 
+interface GetParagraphsAction {
+    type: ActionsTypes.GET_PARAGRAPHS,
+    payload: IAboutUsParagraph[]
+}
+
+interface CreateNewParagraphAction {
+    type: ActionsTypes.CREATE_NEW_PARAGRAPH
+}
+
+interface UpdateParagraphAction {
+    type: ActionsTypes.UPDATE_PARAGRAPH,
+}
+
+interface DeleteParagraphAction {
+    type: ActionsTypes.DELETE_PARAGRAPH,
+}
+
+interface IncrementParagraphAction {
+    type: ActionsTypes.INCREMENT_PARAGRAPH
+}
+
+interface DecrementParagraphAction {
+    type: ActionsTypes.DECREMENT_PARAGRAPH
+}
+
+interface GetAboutUsImages {
+    type: ActionsTypes.GET_IMAGES,
+    payload: IImage[]
+}
+
+interface AddAboutUsImage {
+    type: ActionsTypes.ADD_IMAGE
+}
+
+interface DeleteAboutUsImage {
+    type: ActionsTypes.DELETE_IMAGE
+}
+
 export type action = AuthorizeAdminAction | 
                     LogoutAdminAction | 
                     CreateNewTypeAction | 
@@ -166,4 +213,13 @@ export type action = AuthorizeAdminAction |
                     SetMenuItemTypesFilterAction | 
                     SetErrorAction | 
                     SetIsLoadingAction | 
-                    InitializePaymentAction
+                    InitializePaymentAction |
+                    GetParagraphsAction |
+                    CreateNewParagraphAction |
+                    UpdateParagraphAction |
+                    DeleteParagraphAction |
+                    IncrementParagraphAction |
+                    DecrementParagraphAction |
+                    GetAboutUsImages |
+                    AddAboutUsImage |
+                    DeleteAboutUsImage

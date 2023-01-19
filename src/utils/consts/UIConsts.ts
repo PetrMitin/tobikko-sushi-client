@@ -28,18 +28,22 @@ export const EMPTY_NAME_ERROR: IError = {
 
 export const imgs: IImage[] = [
     {
+        id: 1,
         src: `${API_URL}/ollie-bledniy.jpg`, 
         alt: 'Олли Дабу'
     },
     {
+        id: 2,
         src: `${API_URL}/sl1.jpeg`, 
         alt: 'Олли Дабу'
     },
     {
+        id: 3,
         src: `${API_URL}/sl2.jpeg`, 
         alt: 'Олли Дабу'
     },
     {
+        id: 4,
         src: `${API_URL}/sl3.jpeg`, 
         alt: 'Олли Дабу'
     },

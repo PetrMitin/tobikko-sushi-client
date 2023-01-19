@@ -58,6 +58,39 @@ export class UserActionCreators {
         }
     }
 
+    static getAboutUsParagraphs: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = () => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(this.setIsLoadingAction(true))
+                const paragraphs = await userApiActions.getAboutUsParagraphs()
+                dispatch({type: ActionsTypes.GET_PARAGRAPHS, payload: paragraphs})
+                dispatch(this.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(this.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static getAboutUsImages: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = () => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(this.setIsLoadingAction(true))
+                const images = await userApiActions.getAboutUsImages()
+                dispatch({type: ActionsTypes.GET_IMAGES, payload: images})
+                dispatch(this.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(this.setIsLoadingAction(false))
+            }
+        }
+    }
+
+
     static getAddressSuggestions: ActionCreator<
     ThunkAction<Promise<void>, RootState, void, action>> = (query: string) => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {

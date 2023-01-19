@@ -1,5 +1,6 @@
-import { IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "./apiInterfaces"
+import { IAboutUsParagraph, IDaDataSuggestion, IDiscount, IPromotion, IServerError } from "./apiInterfaces"
 import { IUser, IBasket, ICurrentBasketItem, IMenuItem, IMenuItemType } from "./dbInterfaces"
+import { IImage } from "./UIInterfaces"
 
 export interface IUserState {
     user: IUser | null,
@@ -8,6 +9,8 @@ export interface IUserState {
     menuItems: IMenuItem[],
     menuItemTypesFilter: null | number,
     menuItemTypes: IMenuItemType[],
+    aboutUsParagraphs: IAboutUsParagraph[],
+    aboutUsImages: IImage[],
     totalDiscounts: IDiscount[],
     activePromotion: IPromotion | null,
     addressSuggestions: IDaDataSuggestion[],

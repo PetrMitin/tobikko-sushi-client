@@ -9,6 +9,8 @@ const initialState: IUserState = {
     menuItems: [],
     menuItemTypesFilter: null,
     menuItemTypes: [],
+    aboutUsParagraphs: [],
+    aboutUsImages: [],
     totalDiscounts: [],
     activePromotion: null,
     addressSuggestions: [],
@@ -32,6 +34,10 @@ const userReducer: Reducer<IUserState | undefined, action | {type: ''}> = (state
             return {...state, menuItems: action.payload}
         case ActionsTypes.GET_MENU_ITEM_TYPES:
             return {...state, menuItemTypes: action.payload}
+        case ActionsTypes.GET_PARAGRAPHS:
+            return {...state, aboutUsParagraphs: action.payload}
+        case ActionsTypes.GET_IMAGES:
+            return {...state, aboutUsImages: action.payload}
         case ActionsTypes.GET_ADDRESS_SUGGESTIONS:
             return {...state, addressSuggestions: action.payload}
         case ActionsTypes.SET_ADDRESS_SUGGESTIONS:

@@ -1,5 +1,3 @@
-import { IMenuItemType, IMenuItemInfo } from "./dbInterfaces"
-
 export interface IServerError {
     message: string
 }
@@ -48,4 +46,16 @@ export interface DoubleLinkedListNode {
     id: number,
     prev: number,
     next: number
+}
+
+export interface IAboutUsParagraph {
+    id: number,
+    text: string,
+    prev: number,
+    next: number
+}
+
+export interface IImageData {
+    id: number,
+    filename: string
 }

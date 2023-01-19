@@ -2,9 +2,9 @@ import axios from "axios"
 import DoubleLinkedList from "../utils/classes/DoubleLinkedList"
 import { DADATA_API_TOKEN } from "../utils/consts/apiConsts"
 import { ADDRESS_API_URL, API_URL } from "../utils/consts/urlConsts"
-import { IDaDataSuggestion, IDaDataSuggestionResponse, IDiscount, IPromotion } from "../utils/interfaces/apiInterfaces"
+import { IAboutUsParagraph, IDaDataSuggestion, IDaDataSuggestionResponse, IDiscount, IPromotion } from "../utils/interfaces/apiInterfaces"
 import { IUser, IBasket, IMenuItem, IMenuItemType, ICurrentBasketItem } from "../utils/interfaces/dbInterfaces"
-import { IDeliveryRegion } from "../utils/interfaces/UIInterfaces"
+import { IDeliveryRegion, IImage } from "../utils/interfaces/UIInterfaces"
 
 
 class UserApiActions {
@@ -36,6 +36,20 @@ class UserApiActions {
         if (!res.ok) throw new Error('Could not fetch item types')
         const jsonRes = await res.json()
         return jsonRes
+    }
+
+    getAboutUsParagraphs = async (): Promise<IAboutUsParagraph[]> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/`)
+        if (!res.ok) throw new Error('Could not fetch paragraphs')
+        const jsonRes = await res.json()
+        return DoubleLinkedList.sortToArray(jsonRes)
+    }
+
+    getAboutUsImages = async (): Promise<IImage[]> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/images`)
+        if (!res.ok) throw new Error('Could not fetch images')
+        const jsonRes = await res.json()
+        return jsonRes.images.map((imgData: {id: number, filename: string}) => ({src: `${API_URL}/${imgData.filename}`, id: imgData.id}))
     }
 
     getAddressSuggestions = async(query: string): Promise<IDaDataSuggestion[]> => {

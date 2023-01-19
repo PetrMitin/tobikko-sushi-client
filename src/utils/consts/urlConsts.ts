@@ -1,4 +1,4 @@
-export const CLIENT_URL = 'https://localhost:3000'
+export const CLIENT_URL = 'http://localhost:3000'
 export const API_URL = 'http://localhost'
 export const MAIN_LOGO_NO_TEXT_URL = `${API_URL}/main-logo-no-text.png`
 export const MAIN_LOGO_TEXT_URL = `${API_URL}/main-logo.jpeg`

@@ -12,6 +12,8 @@ const AdminControls: FC = () => {
     useEffect(() => {
         dispatch(UserActionCreators.getMenuItemTypes())
         dispatch(UserActionCreators.getMenuItems())
+        dispatch(UserActionCreators.getAboutUsParagraphs())
+        dispatch(UserActionCreators.getAboutUsImages())
     }, [dispatch])
 
     return (

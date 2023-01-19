@@ -200,6 +200,134 @@ export class AdminActionCreators {
         }
     }
 
+    static createNewAboutUsParagraph: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (text: string) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.createNewAboutUsParagraph(text)
+                console.log(res);
+                dispatch({type: ActionsTypes.CREATE_NEW_PARAGRAPH})
+                dispatch(UserActionCreators.getAboutUsParagraphs())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static updateAboutUsParagraph: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id:number, text: string) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.updateAboutUsParagraph(id, text)
+                console.log(res);
+                dispatch({type: ActionsTypes.UPDATE_PARAGRAPH})
+                dispatch(UserActionCreators.getAboutUsParagraphs())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static deleteAboutUsParagraph: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.deleteAboutUsParagraph(id)
+                console.log(res);
+                dispatch({type: ActionsTypes.DELETE_PARAGRAPH})
+                dispatch(UserActionCreators.getAboutUsParagraphs())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static incrementAboutUsParagraph: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.incrementAboutUsParagraph(id)
+                console.log(res);
+                dispatch({type: ActionsTypes.INCREMENT_PARAGRAPH})
+                dispatch(UserActionCreators.getAboutUsParagraphs())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static decrementAboutUsParagraph: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.decrementAboutUsParagraph(id)
+                console.log(res);
+                dispatch({type: ActionsTypes.DECREMENT_PARAGRAPH})
+                dispatch(UserActionCreators.getAboutUsParagraphs())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static addAboutUsImage: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (imgData: FormData) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.addAboutUsImage(imgData)
+                console.log(res);
+                dispatch({type: ActionsTypes.ADD_IMAGE})
+                dispatch(UserActionCreators.getAboutUsImages())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    static deleteAboutUsImage: ActionCreator<
+    ThunkAction<Promise<void>, RootState, void, action>> = (id: number) => {
+        return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {
+            try {
+                dispatch(UserActionCreators.setIsLoadingAction(true))
+                const res = await adminActions.deleteAboutUsImage(id)
+                console.log(res)
+                dispatch({type: ActionsTypes.DELETE_IMAGE})
+                dispatch(UserActionCreators.getAboutUsImages())
+                dispatch(UserActionCreators.setErrorAction(null))
+            } catch(e: any) {
+                if (e instanceof Error) dispatch(UserActionCreators.setErrorAction({message: e.message}))
+            } finally {
+                dispatch(UserActionCreators.setIsLoadingAction(false))
+            }
+        }
+    }
+
+    
+
     static setActiveDiscount: ActionCreator<
     ThunkAction<Promise<void>, RootState, void, action>> = (discount: IDiscount) => {
         return async (dispatch: ThunkDispatch<RootState, void, action>): Promise<void> => {

@@ -1,8 +1,9 @@
 import { IAdminData } from "./reduxInterfaces"
 
 export interface IImage {
+    id: number,
     src: string,
-    alt: string,
+    alt?: string,
     label?: string,
     text?: string
 }

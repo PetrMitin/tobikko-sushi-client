@@ -1,8 +1,8 @@
 import axios from "axios"
 import $admin_api from "../http/axios"
 import { API_URL } from "../utils/consts/urlConsts"
-import { IDiscount, IMenuItemData, IPromotion } from "../utils/interfaces/apiInterfaces"
-import { ILoginResponse } from "../utils/interfaces/UIInterfaces"
+import { IAboutUsParagraph, IDiscount, IImageData, IMenuItemData, IPromotion } from "../utils/interfaces/apiInterfaces"
+import { IImage, ILoginResponse } from "../utils/interfaces/UIInterfaces"
 
 axios.defaults.withCredentials = true
 
@@ -166,6 +166,90 @@ class AdminApiActions {
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })
+    }
+
+    createNewAboutUsParagraph = async (text: string): Promise<IAboutUsParagraph> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data`, {
+            method: 'POST',
+            body: JSON.stringify({
+                text
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not create new paragraph')
+        const jsonRes = await res.json()
+        return jsonRes.paragraph
+    } 
+
+    updateAboutUsParagraph = async (id: number, text: string): Promise<void> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                text
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not update paragraph')
+    } 
+
+    deleteAboutUsParagraph = async (id: number): Promise<void> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not delete paragraph')
+    } 
+
+    incrementAboutUsParagraph = async (id: number): Promise<void> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/${id}/increment`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not update paragraph')
+    } 
+
+    decrementAboutUsParagraph = async (id: number): Promise<void> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/${id}/decrement`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not update paragraph')
+    } 
+
+    addAboutUsImage = async (imageData: FormData): Promise<IImage> => {
+        const res = await axios.post<{image: IImageData}>(`${API_URL}/api/static-data/images`, imageData, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+        const addedImageData = res.data.image
+        return {id: addedImageData.id, src: `${API_URL}/${addedImageData.filename}`}
+    }
+
+    deleteAboutUsImage = async (id: number): Promise<void> => {
+        const res = await fetch(`${this.baseApiUrl}/static-data/images/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!res.ok) throw new Error('Could not delete paragraph')
     }
 
     setActiveDiscount = async(discount: IDiscount): Promise<IDiscount> => {
