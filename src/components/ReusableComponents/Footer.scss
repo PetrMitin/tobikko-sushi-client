@@ -30,3 +30,39 @@ hr {
 .footer-col {
     width: 100%;
 }
+
+.mobile-apps-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    a {
+        width: 100%;
+    }
+
+    img {
+        width: 30%;
+        margin: 0 1%;
+    }
+}
+
+@media screen
+    and (max-width: 1250px) {
+        .mobile-apps-link {
+            img {
+                width: 50%;
+            }
+        } 
+}
+
+@media screen
+    and (max-width: 600px) {
+        .mobile-apps-link {
+            img {
+                width: 50%;
+                max-width: 200px;
+            }
+        } 
+}
